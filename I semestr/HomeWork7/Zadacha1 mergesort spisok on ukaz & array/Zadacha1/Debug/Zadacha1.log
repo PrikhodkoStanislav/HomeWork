@@ -1,0 +1,17 @@
+﻿Построение начато 24.12.2013 14:37:44.
+     1>Проект "J:\C++\HomeWork7\Zadacha1 mergesort spisok on ukaz & array\Zadacha1\Zadacha1.vcxproj" в узле 2 (целевые объекты Build).
+     1>InitializeBuildStatus:
+         Создание "Debug\Zadacha1.unsuccessfulbuild", так как было задано "AlwaysCreate".
+       ClCompile:
+         Для всех выходных данных обновления не требуется.
+       Link:
+         Для всех выходных данных обновления не требуется.
+         Zadacha1.vcxproj -> J:\C++\HomeWork7\Zadacha1 mergesort spisok on ukaz & array\Debug\Zadacha1.exe
+       FinalizeBuildStatus:
+         Файл "Debug\Zadacha1.unsuccessfulbuild" удаляется.
+         Обращение к "Debug\Zadacha1.lastbuildstate".
+     1>Построение проекта "J:\C++\HomeWork7\Zadacha1 mergesort spisok on ukaz & array\Zadacha1\Zadacha1.vcxproj" завершено (целевые объекты Build).
+
+Построение успешно завершено.
+
+Затраченное время: 00:00:01.38

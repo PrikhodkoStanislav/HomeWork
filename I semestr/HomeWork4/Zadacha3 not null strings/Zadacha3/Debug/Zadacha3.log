@@ -1,0 +1,17 @@
+﻿Построение начато 10.10.2013 17:07:20.
+     1>Проект "C:\Users\Станислав\Documents\C++\HomeWork4\Zadacha3\Zadacha3\Zadacha3.vcxproj" в узле 2 (целевые объекты Build).
+     1>InitializeBuildStatus:
+         Создание "Debug\Zadacha3.unsuccessfulbuild", так как было задано "AlwaysCreate".
+       ClCompile:
+         Для всех выходных данных обновления не требуется.
+       Link:
+         Для всех выходных данных обновления не требуется.
+         Zadacha3.vcxproj -> C:\Users\Станислав\Documents\C++\HomeWork4\Zadacha3\Debug\Zadacha3.exe
+       FinalizeBuildStatus:
+         Файл "Debug\Zadacha3.unsuccessfulbuild" удаляется.
+         Обращение к "Debug\Zadacha3.lastbuildstate".
+     1>Построение проекта "C:\Users\Станислав\Documents\C++\HomeWork4\Zadacha3\Zadacha3\Zadacha3.vcxproj" завершено (целевые объекты Build).
+
+Построение успешно завершено.
+
+Затраченное время: 00:00:00.06
