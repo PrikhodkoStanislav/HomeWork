@@ -1,5 +1,0 @@
-Name of child is Petr !
-Names of childs are Petr and Elena !
-Name of child is Svetlana !
-Names of childs are Kseniya and Andrey !
-Name of child is Andrey !
