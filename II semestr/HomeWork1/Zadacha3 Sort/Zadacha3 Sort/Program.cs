@@ -51,7 +51,7 @@ namespace Zadacha3_Sort
 {
     class Program
     {
-        static void swap(int[] array, int i, int j)
+        static void Swap(int[] array, int i, int j)
         {
             int temp = array[i];
             array[i] = array[j];
@@ -65,7 +65,7 @@ namespace Zadacha3_Sort
                 {
                     if (array[j] > array[j + 1])
                     {
-                        swap(array, j, j + 1);
+                        Swap(array, j, j + 1);
                     }
                 }
             }
