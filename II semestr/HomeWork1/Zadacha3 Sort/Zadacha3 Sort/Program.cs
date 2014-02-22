@@ -40,24 +40,59 @@ Input array:
 Sorted array:
 5 10 20 23 25
 Для продолжения нажмите любую клавишу . . .
+ * 6)
+ * Input length of array:
+r
+Wrong input!
+
+Input length of array:
+5
+Input array(between elements must be ' ' !):
+1 2 3 4 f
+Wrong input!
+
+Input array(between elements must be ' ' !):
+ 1 3 2 4 f
+Wrong input!
+
+Input array(between elements must be ' ' !):
+1 2 3 4 1
+Sorted array:
+1 1 2 3 4
+Для продолжения нажмите любую клавишу . . .
+ * 7)
+ * Input length of array:
+10
+Input array(between elements must be ' ' !):
+q e d f g
+Wrong input!
+
+Input array(between elements must be ' ' !):
+1 f
+Wrong input!
+
+Input array(between elements must be ' ' !):
+1 5 3 4 10 23 20 15 4 23
+Sorted array:
+1 3 4 4 5 10 15 20 23 23
+Для продолжения нажмите любую клавишу . . .
 */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Zadacha3_Sort
 {
     class Program
     {
-        static void Swap(int[] array, int i, int j)
+        // swap elements in array with indexes i and j
+        public static void Swap(int[] array, int i, int j)
         {
             int temp = array[i];
             array[i] = array[j];
             array[j] = temp;
         }
-        static void BubbleSort(int[] array)
+
+        // bubblesort of array
+        public static void BubbleSort(int[] array)
         {
             for (int i = 0; i < array.Length - 1; i++)
             {
@@ -70,17 +105,41 @@ namespace Zadacha3_Sort
                 }
             }
         }
-        static void Main(string[] args)
+
+        public static void Main(string[] args)
         {
             Console.WriteLine("Input length of array:");
-            int length = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Input array:");
-            int[] arrayOfNumbers = new int[length];
-            string stringWithElements = Console.ReadLine();
-            string[] arrayOfElements = stringWithElements.Split(' ');
-            for (int i = 0; i < length; i++)
+            string input = Console.ReadLine();
+            int length = 0;
+            while (!int.TryParse(input, out length))
             {
-                arrayOfNumbers[i] = Convert.ToInt32(arrayOfElements[i]);
+                Console.WriteLine("Wrong input!");
+                Console.WriteLine();
+                Console.WriteLine("Input length of array:");
+                input = Console.ReadLine();
+            }
+            int[] arrayOfNumbers = new int[length];
+            string stringWithElements = " ";
+            bool goodInput = false;
+            while (!goodInput)
+            {
+                Console.WriteLine("Input array(between elements must be ' ' !):");
+                stringWithElements = Console.ReadLine();
+                string[] arrayOfElements = stringWithElements.Split(' ');
+                for (int i = 0; i < length; i++)
+                {
+                    if (int.TryParse(arrayOfElements[i], out arrayOfNumbers[i]))
+                    {
+                        goodInput = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Wrong input!");
+                        Console.WriteLine();
+                        goodInput = false;
+                        break;
+                    }
+                }
             }
             BubbleSort(arrayOfNumbers);
             Console.WriteLine("Sorted array:");

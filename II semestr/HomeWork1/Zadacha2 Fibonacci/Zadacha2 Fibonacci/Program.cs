@@ -25,18 +25,45 @@ Fibonacci number = 55
 30
 Fibonacci number = 832040
 Для продолжения нажмите любую клавишу . . .
+ * 6)
+ * Input number:
+qw
+Wrong input!
+
+Input number:
+as
+Wrong input!
+
+Input number:
+ad
+Wrong input!
+
+Input number:
+3a
+Wrong input!
+
+Input number:
+3
+Fibonacci number = 2
+Для продолжения нажмите любую клавишу . . .
+ * 7)
+ * Input number:
+45w
+Wrong input!
+
+Input number:
+15
+Fibonacci number = 610
+Для продолжения нажмите любую клавишу . . .
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Zadacha2_Fibonacci
 {
     class Program
     {
-        static int FibonacciNumber(int number)
+        // fubbonacci number
+        public static int FibonacciNumber(int number)
         {
             if (number == 0)
                 return 0;
@@ -44,10 +71,19 @@ namespace Zadacha2_Fibonacci
                 return 1;
             return FibonacciNumber(number - 1) + FibonacciNumber(number - 2);
         }
-        static void Main(string[] args)
+
+        public static void Main(string[] args)
         {
             Console.WriteLine("Input number:");
-            int number = Convert.ToInt32(Console.ReadLine());
+            string input = Console.ReadLine();
+            int number = 0;
+            while (!int.TryParse(input, out number))
+            {
+                Console.WriteLine("Wrong input!");
+                Console.WriteLine();
+                Console.WriteLine("Input number:");
+                input = Console.ReadLine();
+            }
             Console.WriteLine("Fibonacci number = {0}", FibonacciNumber(number));
         }
     }
