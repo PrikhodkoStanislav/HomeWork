@@ -111,7 +111,7 @@ namespace Zadacha3_Sort
             Console.WriteLine("Input length of array:");
             string input = Console.ReadLine();
             int length = 0;
-            while (!int.TryParse(input, out length))
+            while (!int.TryParse(input, out length) || length <= 0)
             {
                 Console.WriteLine("Wrong input!");
                 Console.WriteLine();

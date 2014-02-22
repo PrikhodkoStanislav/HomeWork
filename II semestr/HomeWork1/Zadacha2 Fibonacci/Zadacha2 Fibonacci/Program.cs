@@ -77,7 +77,7 @@ namespace Zadacha2_Fibonacci
             Console.WriteLine("Input number:");
             string input = Console.ReadLine();
             int number = 0;
-            while (!int.TryParse(input, out number))
+            while (!int.TryParse(input, out number) || number < 0)
             {
                 Console.WriteLine("Wrong input!");
                 Console.WriteLine();
