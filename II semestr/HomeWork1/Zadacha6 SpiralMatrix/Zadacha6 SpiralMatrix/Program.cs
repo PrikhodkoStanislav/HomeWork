@@ -150,7 +150,7 @@ namespace Zadacha6_SpiralMatrix
                             break;
                         }
                     }
-                    if (goodInput == false)
+                    if (!goodInput)
                     {
                         break;
                     }
