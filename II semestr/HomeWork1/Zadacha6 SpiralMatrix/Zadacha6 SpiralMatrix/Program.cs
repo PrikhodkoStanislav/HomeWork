@@ -111,32 +111,32 @@ namespace Zadacha6_SpiralMatrix
         }
 
         // output matrix with length in spiral form
-        public static void OutputMatrixInSpiralForm(int [,]matrix, int length)
+        public static void OutputMatrixInSpiralForm(int [,]matrix)
         {
             Console.WriteLine("Elements of matrix in the spiral form:");
-            int indexLine = length / 2;
-            int indexColumn = length / 2;
+            int indexLine = matrix.GetLength(0) / 2;
+            int indexColumn = matrix.GetLength(0) / 2;
             Console.Write("{0} ", matrix[indexLine, indexColumn]);
-            for (int i = 1; i < length * length; i++)
+            for (int i = 1; i < matrix.GetLength(0) * matrix.GetLength(0); i++)
             {
-                Modification(ref indexLine, ref indexColumn, length);
+                Modification(ref indexLine, ref indexColumn, matrix.GetLength(0));
                 Console.Write("{0} ", matrix[indexLine, indexColumn]);
             }
             Console.WriteLine();
         }
 
         // input matrix with length
-        public static void InputMatrix(int [,]matrix, int length)
+        public static void InputMatrix(int [,]matrix)
         {
             bool goodInput = false;
             while (!goodInput)
             {
                 Console.WriteLine("Input matrix(between elements in the one line must be ' ' !):");
-                for (int i = 0; i < length; i++)
+                for (int i = 0; i < matrix.GetLength(0); i++)
                 {
                     string stringWithElementsOfLine = Console.ReadLine();
                     string[] stringWithNumbers = stringWithElementsOfLine.Split(' ');
-                    for (int j = 0; j < length; j++)
+                    for (int j = 0; j < matrix.GetLength(0); j++)
                     {
                         if (int.TryParse(stringWithNumbers[j], out matrix[i, j]))
                         {
@@ -171,8 +171,8 @@ namespace Zadacha6_SpiralMatrix
                 input = Console.ReadLine();
             }
             int[,] matrix = new int[length, length];
-            InputMatrix(matrix, length);
-            OutputMatrixInSpiralForm(matrix, length);
+            InputMatrix(matrix);
+            OutputMatrixInSpiralForm(matrix);
         }
     }
 }

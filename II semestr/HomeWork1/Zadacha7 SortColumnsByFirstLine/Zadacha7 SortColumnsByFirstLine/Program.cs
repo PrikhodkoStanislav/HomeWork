@@ -115,10 +115,10 @@ namespace Zadacha7_SortColumnsByFirstLine
 {
     class Program
     {
-        // swap columns with indexes i and j in array with m lines
-        public static void SwapColumns(int[,] array, int i, int j, int m)
+        // swap columns with indexes i and j in array
+        public static void SwapColumns(int[,] array, int i, int j)
         {
-            for (int k = 0; k < m; k++)
+            for (int k = 0; k < array.GetLength(0); k++)
             {
                 int temp = array[k, i];
                 array[k, i] = array[k, j];
@@ -126,14 +126,14 @@ namespace Zadacha7_SortColumnsByFirstLine
             }
         }
 
-        // selectionSort of array with m lines and n columns
-        public static void SelectionSort(int[,] array, int m, int n)
+        // selectionSort of array
+        public static void SelectionSort(int[,] array)
         {
             int minimumElement = array[0, 0];
             int index = 0;
-            for (int j = 0; j < n - 1; j++)
+            for (int j = 0; j < array.GetLength(1) - 1; j++)
             {
-                for (int i = j + 1; i < n; i++)
+                for (int i = j + 1; i < array.GetLength(1); i++)
                 {
                     if (array[0, i] < minimumElement)
                     {
@@ -141,7 +141,7 @@ namespace Zadacha7_SortColumnsByFirstLine
                         index = i;
                     }
                 }
-                SwapColumns(array, j, index, m);
+                SwapColumns(array, j, index);
                 index = j + 1;
                 minimumElement = array[0, index];
             }
@@ -205,7 +205,7 @@ namespace Zadacha7_SortColumnsByFirstLine
                     }
                 }
             }
-            SelectionSort(matrix, m, n);
+            SelectionSort(matrix);
             Console.WriteLine("Sorted matrix:");
             for (int i = 0; i < m; i++)
             {
