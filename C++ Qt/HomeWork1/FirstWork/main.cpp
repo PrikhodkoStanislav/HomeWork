@@ -1,4 +1,4 @@
-#include <QtCore>
+#include <QtCore/QDebug>
 
 int main()
 {

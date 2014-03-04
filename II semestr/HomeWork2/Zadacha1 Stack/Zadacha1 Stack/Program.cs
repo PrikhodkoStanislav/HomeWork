@@ -1,73 +1,79 @@
-﻿using System;
+﻿/*
+ * Test:
+ * 
+ * Stack is not empty!
+Last element = 25
+Elements in stack: 25, 20, 10, 7, 5
+Для продолжения нажмите любую клавишу . . .
+ * */
+using System;
 
 namespace Zadacha1_Stack
 {
-    public class Element
-    {
-        private int value;
-        private Element next;
-        public Element(int value)
-        {
-            this.value = value;
-            this.next = null;
-        }
-
-        public Element(int value, Element next)
-        {
-            this.value = value;
-            this.next = next;
-        }
-
-        public int ReturnValue()
-        {
-            return value;
-        }
-
-        public Element ReturnNext()
-        {
-            return next;
-        }
-    }
-
+    /// <summary>
+    /// class of stack
+    /// </summary>
     public class Stack
     {
-        private Element lastElement;
-        private int stackSize;
+        /// <summary>
+        /// class of element with value and reference on next element
+        /// </summary>
+        private class Element
+        {
+            private int value;
+            public Element Next { get; set; }
 
+            /// <summary>
+            /// properties for element
+            /// </summary>
+            public int Value
+            {
+                get
+                {
+                    return value;
+                }
+
+                set
+                {
+                    this.value = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// constuctor of clear stack
+        /// </summary>
         public Stack()
         {
-            this.lastElement = null;
-            this.stackSize = 0;
+            this.head = null;
         }
 
-        public int Size()
-        {
-            return stackSize;
-        }
-
+        /// <summary>
+        /// push element with value to the stack
+        /// </summary>
+        /// <param name="value"></param>
         public void Push(int value)
         {
-            if (stackSize == 0)
+            Element newElement = new Element()
             {
-                Element element = new Element(value);
-                lastElement = element;
-            }
-            else
-            {
-                Element element = new Element(value, lastElement);
-                lastElement = element;
-            }
-            stackSize += 1;
+                Next = head,
+                Value = value
+            };
+
+            head = newElement;
         }
 
+        /// <summary>
+        /// return value from the stack and delete it from the stack
+        /// </summary>
+        /// <returns></returns>
         public int Pop()
         {
-            if (stackSize > 0)
+            if (head != null)
             {
-                Element variable = lastElement;
-                lastElement = lastElement.ReturnNext();
-                stackSize -= 1;
-                return variable.ReturnValue();
+                int temp = head.Value;
+                head = head.Next;
+                return temp;
             }
             else
             {
@@ -76,11 +82,15 @@ namespace Zadacha1_Stack
             }
         }
 
+        /// <summary>
+        /// return value from the stack
+        /// </summary>
+        /// <returns></returns>
         public int Peek()
         {
-            if (stackSize > 0)
+            if (head != null)
             {
-                return lastElement.ReturnValue();
+                return head.Value;
             }
             else
             {
@@ -88,8 +98,19 @@ namespace Zadacha1_Stack
                 return 0;
             }
         }
-    }
 
+        /// <summary>
+        /// return 'true' if stack is empty and 'false' if it's not empty
+        /// </summary>
+        /// <returns></returns>
+        public bool IsEmpty()
+        {
+            return (head == null);
+        }
+
+        private Element head;
+    }
+    
     public class Program
     {
         static void Main(string[] args)
@@ -100,7 +121,15 @@ namespace Zadacha1_Stack
             stack.Push(10);
             stack.Push(20);
             stack.Push(25);
-            Console.WriteLine("Stack size = {0}", stack.Size());
+            if (stack.IsEmpty())
+            {
+                Console.WriteLine("Stack is empty!");
+                return;
+            }
+            else
+            {
+                Console.WriteLine("Stack is not empty!");
+            }
             Console.WriteLine("Last element = {0}", stack.Peek());
             Console.WriteLine("Elements in stack: {0}, {1}, {2}, {3}, {4}", stack.Pop(), stack.Pop(), stack.Pop(), stack.Pop(), stack.Pop());
         }
