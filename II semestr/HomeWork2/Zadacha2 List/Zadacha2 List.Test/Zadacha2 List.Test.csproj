@@ -53,6 +53,13 @@
     <Compile Include="ListTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Zadacha2 List\Zadacha2 List.csproj">
+      <Project>{85635b96-558c-46a7-918a-b9f9eb772ec9}</Project>
+      <Name>Zadacha2 List</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
