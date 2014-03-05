@@ -56,6 +56,31 @@
             Assert.IsTrue(list.IsEmpty());
         }
 
+        /// <summary>
+        /// Insert to head elements and value of position 2 must be 2.
+        /// </summary>
+        [TestMethod]
+        public void ValueOfPositionTest()
+        {
+            list.InsertToHead(4);
+            list.InsertToHead(3);
+            list.InsertToHead(2);
+            list.InsertToHead(1);
+            list.InsertToHead(0);
+            Assert.AreEqual(2, list.ValueOfPosition(2));
+        }
+
+        /// <summary>
+        /// In empty stack value of any position must be -1.
+        /// </summary>
+        [TestMethod]
+        public void ValueOfPositionInEmptyListTest()
+        {
+            Assert.AreEqual(-1, list.ValueOfPosition(5));
+        }
+
+
+
         private List list;
     }
 }

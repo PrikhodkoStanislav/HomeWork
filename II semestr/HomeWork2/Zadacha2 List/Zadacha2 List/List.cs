@@ -32,6 +32,29 @@
         }
 
         /// <summary>
+        /// Return value of the position.
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
+        public int ValueOfPosition(int position)
+        {
+            var element = head;
+            if (element == null)
+            {
+                return -1;
+            }
+            for (int i = 0; i < position; i++)
+            {
+                if (element == null)
+                {
+                    return -1;
+                }
+                element = element.Next;
+            }
+            return element.Value;
+        }
+
+        /// <summary>
         /// Print all list on console.
         /// </summary>
         public void Print()
