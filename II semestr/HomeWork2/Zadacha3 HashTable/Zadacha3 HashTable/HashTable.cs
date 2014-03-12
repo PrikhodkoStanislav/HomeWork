@@ -11,6 +11,17 @@
         private List[] table = new List[n];
 
         /// <summary>
+        /// Constructor for new hash table.
+        /// </summary>
+        public HashTable()
+        {
+            for (int i = 0; i < n; i++)
+            {
+                table[i] = new List();
+            }
+        }
+
+        /// <summary>
         /// Return hash function of value.
         /// </summary>
         /// <param name="value"></param>
