@@ -11,6 +11,7 @@ QT       -= gui
 TARGET = FirstWork
 CONFIG   += console
 CONFIG   -= app_bundle
+CONFIG += C++11
 
 TEMPLATE = app
 
