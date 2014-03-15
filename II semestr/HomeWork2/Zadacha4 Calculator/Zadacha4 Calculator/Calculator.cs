@@ -7,6 +7,15 @@
     /// </summary>
     public class Calculator
     {
+
+        public Calculator(bool isReference)
+        {
+            if (isReference)
+                stack = new StackOnReference();
+            else
+                stack = new StackOnArray();
+        }
+
         /// <summary>
         /// Add new element in stack calculator.
         /// </summary>
@@ -59,7 +68,6 @@
             return stack.Peek();
         }
 
-        private Stack stack = new StackOnReference();
-        //private Stack stack = new StackOnArray();
+        private Stack stack;
     }
 }

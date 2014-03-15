@@ -10,7 +10,8 @@
         [TestInitialize]
         public void Initialize()
         {
-            calc = new Calculator();
+            calc = new Calculator(true);
+            calc2 = new Calculator(false);
         }
 
         /// <summary>
@@ -21,6 +22,8 @@
         {
             calc.AddElement(5);
             Assert.AreEqual(5, calc.ReturnResult());
+            calc2.AddElement(5);
+            Assert.AreEqual(5, calc2.ReturnResult());
         }
 
         /// <summary>
@@ -33,6 +36,10 @@
             calc.AddElement(10);
             calc.Add();
             Assert.AreEqual(15, calc.ReturnResult());
+            calc2.AddElement(5);
+            calc2.AddElement(10);
+            calc2.Add();
+            Assert.AreEqual(15, calc2.ReturnResult());
         }
 
         /// <summary>
@@ -45,6 +52,10 @@
             calc.AddElement(7);
             calc.Subtract();
             Assert.AreEqual(3, calc.ReturnResult());
+            calc2.AddElement(10);
+            calc2.AddElement(7);
+            calc2.Subtract();
+            Assert.AreEqual(3, calc2.ReturnResult());
         }
 
         /// <summary>
@@ -57,6 +68,10 @@
             calc.AddElement(2);
             calc.Division();
             Assert.AreEqual(5, calc.ReturnResult());
+            calc2.AddElement(10);
+            calc2.AddElement(2);
+            calc2.Division();
+            Assert.AreEqual(5, calc2.ReturnResult());
         }
 
         /// <summary>
@@ -69,8 +84,13 @@
             calc.AddElement(5);
             calc.Multiplication();
             Assert.AreEqual(50, calc.ReturnResult());
+            calc2.AddElement(10);
+            calc2.AddElement(5);
+            calc2.Multiplication();
+            Assert.AreEqual(50, calc2.ReturnResult());
         }
 
         private Calculator calc;
+        private Calculator calc2;
     }
 }
