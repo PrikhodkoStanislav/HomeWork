@@ -1,8 +1,6 @@
 ﻿namespace UniqueListNamespace
 {
     using System;
-    using ListNamespace;
-    using MyExceptionNamespace;
 
     /// <summary>
     /// Class unique list.
@@ -13,11 +11,11 @@
         /// Insert to head of the unique list with exclusion.
         /// </summary>
         /// <param name="value"></param>
-        public new void InsertToHead(int value)
+        public override void InsertToHead(int value)
         {
             if (this.Exist(value))
             {
-                throw new MyException("This element already exist!");
+                throw new ExceptionExistElement();
             }
             else
             {
@@ -30,11 +28,11 @@
         /// </summary>
         /// <param name="value"></param>
         /// <param name="position"></param>
-        public new void InsertToPosition(int value, int position)
+        public override void InsertToPosition(int value, int position)
         {
             if (this.Exist(value))
             {
-                throw new MyException("This element already exist!");
+                throw new ExceptionExistElement();
             }
             else
             {
@@ -46,11 +44,11 @@
         /// Remove value from the unique list with exclusion.
         /// </summary>
         /// <param name="value"></param>
-        public new void RemoveElement(int value)
+        public override void RemoveElement(int value)
         {
             if (!this.Exist(value))
             {
-                throw new MyException("This element is NOT in this list!");
+                throw new ExceptionNotThisElement();
             }
             else
             {

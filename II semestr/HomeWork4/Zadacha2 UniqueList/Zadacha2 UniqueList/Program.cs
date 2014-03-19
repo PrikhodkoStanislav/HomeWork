@@ -2,7 +2,6 @@
 {
     using System;
     using UniqueListNamespace;
-    using MyExceptionNamespace;
 
     class Program
     {
@@ -14,9 +13,9 @@
                 u.InsertToHead(5);
                 u.InsertToHead(5);
             }
-            catch (MyException e)
+            catch (ExceptionExistElement e)
             {
-                Console.WriteLine(e.error);
+                Console.WriteLine();
             }
         }
     }

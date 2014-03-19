@@ -1,4 +1,4 @@
-﻿namespace ListNamespace
+﻿namespace UniqueListNamespace
 {
     /// <summary>
     /// Class list.
@@ -7,8 +7,14 @@
     {
         private class ListElement
         {
+            /// <summary>
+            /// Next element.
+            /// </summary>
             public ListElement Next { get; set; }
 
+            /// <summary>
+            /// Value of list element.
+            /// </summary>
             public int Value { get; set; }
         }
 
@@ -18,7 +24,7 @@
         /// Insert value in the head of the list.
         /// </summary>
         /// <param name="value"></param>
-        public void InsertToHead(int value)
+        public virtual void InsertToHead(int value)
         {
             var newElement = new ListElement()
             {
@@ -59,7 +65,7 @@
         /// </summary>
         /// <param name="value"></param>
         /// <param name="position"></param>
-        public void InsertToPosition(int value, int position)
+        public virtual void InsertToPosition(int value, int position)
         {
             var element = head;
             if (element == null || position == 0)
@@ -87,7 +93,7 @@
         /// Remove first element with value from the list.
         /// </summary>
         /// <param name="value"></param>
-        public void RemoveElement(int value)
+        public virtual void RemoveElement(int value)
         {
             var element = head;
             if (element == null)

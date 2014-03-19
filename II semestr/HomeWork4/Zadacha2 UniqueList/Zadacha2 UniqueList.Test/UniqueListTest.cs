@@ -3,7 +3,6 @@
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using UniqueListNamespace;
-    using MyExceptionNamespace;
 
     [TestClass]
     public class UniqueListTest
@@ -19,7 +18,7 @@
         /// If insert element 5 again, exception must work.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(MyException))]
+        [ExpectedException(typeof(ExceptionExistElement))]
         public void InsertToHeadTest()
         {
             uniqueList.InsertToHead(5);   
@@ -31,7 +30,7 @@
         /// If insert element 1 in position 1, it must work the exception.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(MyException))]
+        [ExpectedException(typeof(ExceptionExistElement))]
         public void InsertToPositionTest()
         {
             uniqueList.InsertToHead(1);
@@ -43,10 +42,21 @@
         /// it must work the exception.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(MyException))]
+        [ExpectedException(typeof(ExceptionNotThisElement))]
         public void RemoveElementTest()
         {
             uniqueList.RemoveElement(0);
+        }
+
+        /// <summary>
+        /// Insert to position as list.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ExceptionExistElement))]
+        public void InsertToPositionTestAsList()
+        {
+            uniqueList.InsertToHead(1);
+            (uniqueList as List).InsertToPosition(1, 1);
         }
 
         private UniqueList uniqueList;
