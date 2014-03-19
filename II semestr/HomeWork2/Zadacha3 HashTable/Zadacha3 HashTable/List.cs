@@ -9,8 +9,14 @@
     {
         private class ListElement
         {
+            /// <summary>
+            /// Next element.
+            /// </summary>
             public ListElement Next { get; set; }
 
+            /// <summary>
+            /// Value of list element.
+            /// </summary>
             public int Value { get; set; }
         }
 
@@ -116,6 +122,10 @@
             element.Next = element.Next.Next;
         }
 
+        /// <summary>
+        /// Remove value from the list.
+        /// </summary>
+        /// <param name="value"></param>
         public void RemoveElement(int value)
         {
             var element = head;
