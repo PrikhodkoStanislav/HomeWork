@@ -7,13 +7,13 @@
     /// </summary>
     public class Calculator
     {
-
-        public Calculator(bool isReference)
+        /// <summary>
+        /// Constructor of calculator.
+        /// </summary>
+        public Calculator()
         {
-            if (isReference)
-                stack = new StackOnReference();
-            else
-                stack = new StackOnArray();
+            //
+            stack = new StackOnArray();
         }
 
         /// <summary>

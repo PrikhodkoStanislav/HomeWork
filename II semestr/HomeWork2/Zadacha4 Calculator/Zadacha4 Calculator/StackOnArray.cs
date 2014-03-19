@@ -13,8 +13,12 @@
         /// <param name="value"></param>
         public void Push(int value)
         {
-            Array.Resize(ref array, array.Length + 1);
-            array[array.Length - 1] = value;
+            this.lengthOfArray++;
+            if (array.Length < this.lengthOfArray)
+            {
+                Array.Resize(ref array, array.Length * 2);
+            }
+            array[this.lengthOfArray - 1] = value;
         }
 
         /// <summary>
@@ -23,8 +27,8 @@
         /// <returns></returns>
         public int Pop()
         {
-            int temp = array[array.Length - 1];
-            Array.Resize(ref array, array.Length - 1);
+            int temp = array[this.lengthOfArray - 1];
+            this.lengthOfArray--;
             return temp;
         }
 
@@ -34,7 +38,7 @@
         /// <returns></returns>
         public int Peek()
         {
-            return array[array.Length - 1];
+            return array[this.lengthOfArray - 1];
         }
 
         /// <summary>
@@ -46,6 +50,7 @@
             return (array.Length == 0);
         }
 
-        private int[] array = new int[0];
+        private int[] array = new int[1];
+        private int lengthOfArray { get; set; }
     }
 }
