@@ -3,14 +3,19 @@
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using CalculatorNamespace;
+    using StackNamespace;
 
     [TestClass]
     public class CalculatorTest
     {
         [TestInitialize]
         public void Initialize()
-        {
-            calc = new Calculator();
+        { 
+            Stack stackOnReferences = new StackOnReference();
+            Stack stackOnArray = new StackOnArray();
+
+            calcOnReferences = new Calculator(stackOnReferences);
+            calcOnArray = new Calculator(stackOnArray); 
         }
 
         /// <summary>
@@ -19,8 +24,11 @@
         [TestMethod]
         public void AddElementTest()
         {
-            calc.AddElement(5);
-            Assert.AreEqual(5, calc.ReturnResult());
+            calcOnReferences.AddElement(5);
+            Assert.AreEqual(5, calcOnReferences.ReturnResult());
+
+            calcOnArray.AddElement(5);
+            Assert.AreEqual(5, calcOnArray.ReturnResult());
         }
 
         /// <summary>
@@ -29,10 +37,15 @@
         [TestMethod]
         public void AddTest()
         {
-            calc.AddElement(5);
-            calc.AddElement(10);
-            calc.Add();
-            Assert.AreEqual(15, calc.ReturnResult());
+            calcOnReferences.AddElement(5);
+            calcOnReferences.AddElement(10);
+            calcOnReferences.Add();
+            Assert.AreEqual(15, calcOnReferences.ReturnResult());
+
+            calcOnArray.AddElement(5);
+            calcOnArray.AddElement(10);
+            calcOnArray.Add();
+            Assert.AreEqual(15, calcOnArray.ReturnResult());
         }
 
         /// <summary>
@@ -41,10 +54,15 @@
         [TestMethod]
         public void SubtractTest()
         {
-            calc.AddElement(10);
-            calc.AddElement(7);
-            calc.Subtract();
-            Assert.AreEqual(3, calc.ReturnResult());
+            calcOnReferences.AddElement(10);
+            calcOnReferences.AddElement(7);
+            calcOnReferences.Subtract();
+            Assert.AreEqual(3, calcOnReferences.ReturnResult());
+
+            calcOnArray.AddElement(10);
+            calcOnArray.AddElement(7);
+            calcOnArray.Subtract();
+            Assert.AreEqual(3, calcOnArray.ReturnResult());
         }
 
         /// <summary>
@@ -53,10 +71,15 @@
         [TestMethod]
         public void DivisionTest()
         {
-            calc.AddElement(10);
-            calc.AddElement(2);
-            calc.Division();
-            Assert.AreEqual(5, calc.ReturnResult());
+            calcOnReferences.AddElement(10);
+            calcOnReferences.AddElement(2);
+            calcOnReferences.Division();
+            Assert.AreEqual(5, calcOnReferences.ReturnResult());
+
+            calcOnArray.AddElement(10);
+            calcOnArray.AddElement(2);
+            calcOnArray.Division();
+            Assert.AreEqual(5, calcOnArray.ReturnResult());
         }
 
         /// <summary>
@@ -65,12 +88,18 @@
         [TestMethod]
         public void MultiplicationTest()
         {
-            calc.AddElement(10);
-            calc.AddElement(5);
-            calc.Multiplication();
-            Assert.AreEqual(50, calc.ReturnResult());
+            calcOnReferences.AddElement(10);
+            calcOnReferences.AddElement(5);
+            calcOnReferences.Multiplication();
+            Assert.AreEqual(50, calcOnReferences.ReturnResult());
+
+            calcOnArray.AddElement(10);
+            calcOnArray.AddElement(5);
+            calcOnArray.Multiplication();
+            Assert.AreEqual(50, calcOnArray.ReturnResult());
         }
 
-        private Calculator calc;
+        private Calculator calcOnReferences;
+        private Calculator calcOnArray;
     }
 }

@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace StackNamespace
+﻿namespace StackNamespace
 {
+    using System;
+
     /// <summary>
     /// Class of stack on references.
     /// </summary>

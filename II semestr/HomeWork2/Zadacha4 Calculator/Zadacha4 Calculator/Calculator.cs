@@ -10,10 +10,9 @@
         /// <summary>
         /// Constructor of calculator.
         /// </summary>
-        public Calculator()
+        public Calculator(Stack stack)
         {
-            //
-            stack = new StackOnArray();
+            this.stack = stack;
         }
 
         /// <summary>
