@@ -11,7 +11,6 @@
         [TestInitialize]
         public void Initialize()
         {
-            list = new List<int>();
             function = new Function();
         }
 
@@ -36,7 +35,6 @@
         }
 
         private Function function;
-        private List<int> list;
         private List<int> modelList;
     }
 }
