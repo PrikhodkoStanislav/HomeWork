@@ -175,7 +175,7 @@
             this.MaximumSize = new System.Drawing.Size(300, 300);
             this.MinimumSize = new System.Drawing.Size(300, 300);
             this.Name = "Form1";
-            this.Text = "Крестики-нолики";
+            this.Text = "Tic-tac-toe";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

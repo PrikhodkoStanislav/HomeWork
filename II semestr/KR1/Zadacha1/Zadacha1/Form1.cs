@@ -10,8 +10,14 @@ using System.Windows.Forms;
 
 namespace Zadacha1
 {
+    /// <summary>
+    /// Class of Form.
+    /// </summary>
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// Form.
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
@@ -98,9 +104,9 @@ namespace Zadacha1
             modifyMatrix(index, element);
             if (isWin())
             {
-                string congradulation = "' " + Convert.ToString(element) + " ' " + "! You are win!";
-                DialogResult messageCongradulations = MessageBox.Show(congradulation, "Our congratulations!");
-                if(messageCongradulations ==DialogResult.OK)
+                string congratulation = "' " + Convert.ToString(element) + " ' " + "! You are win!";
+                DialogResult messageCongratulations = MessageBox.Show(congratulation, "Our congratulations!");
+                if(messageCongratulations ==DialogResult.OK)
                 {
                     this.Close();
                 }
