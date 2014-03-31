@@ -63,9 +63,16 @@
         {
             if (coordinateX + deltaX >= 0 && coordinateY + deltaY >= 0)
             {
-                Console.SetCursorPosition(coordinateX + deltaX, coordinateY + deltaY);
-                coordinateX += deltaX;
-                coordinateY += deltaY;
+                if (coordinateX + deltaX < Console.BufferWidth && (coordinateY + deltaY < Console.BufferHeight))
+                {
+                    Console.SetCursorPosition(coordinateX + deltaX, coordinateY + deltaY);
+                    coordinateX += deltaX;
+                    coordinateY += deltaY;
+                }
+                else
+                {
+                    throw new ExceptionWrongDirectionOfCursor();
+                }
             }
             else
             {
