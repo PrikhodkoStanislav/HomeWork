@@ -59,6 +59,37 @@
             (uniqueList as List).InsertToPosition(1, 1);
         }
 
+        /// <summary>
+        /// Insert to position 0 element 5.
+        /// </summary>
+        [TestMethod]
+        public void InsertToPositionRightTest()
+        {
+            uniqueList.InsertToPosition(5, 0);
+            Assert.AreEqual(5, uniqueList.ValueOfPosition(0));
+        }
+
+        /// <summary>
+        /// Insert to head element 1.
+        /// </summary>
+        [TestMethod]
+        public void InsertToHeadRightTest()
+        {
+            uniqueList.InsertToHead(1);
+            Assert.AreEqual(1, uniqueList.ValueOfPosition(0));
+        }
+
+        /// <summary>
+        /// Insert to head element 0 and remove it.
+        /// </summary>
+        [TestMethod]
+        public void RemoveElementRightTest()
+        {
+            uniqueList.InsertToHead(0);
+            uniqueList.RemoveElement(0);
+            Assert.IsFalse(uniqueList.Exist(0));
+        }
+
         private UniqueList uniqueList;
     }
 }
