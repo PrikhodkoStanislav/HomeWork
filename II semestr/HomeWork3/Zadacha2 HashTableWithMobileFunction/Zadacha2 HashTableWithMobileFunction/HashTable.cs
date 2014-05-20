@@ -9,17 +9,16 @@
     {
         private List[] table;
         private int length;
-        private delegate int ruleHashTable(int value);
-        private ruleHashTable hashFunction;
+        private HashFunction hashFunction;
 
         /// <summary>
         /// Constructor for new hash table.
         /// </summary>
         public HashTable(HashFunction function)
         {
-            table = new List[function.lengthOfHashTable()];
-            length = function.lengthOfHashTable();
-            hashFunction = new ruleHashTable(function.ruleOfHashFunction);
+            length = 10;
+            table = new List[length];
+            hashFunction = function;
             for (int i = 0; i < length; i++)
             {
                 table[i] = new List();
@@ -38,7 +37,7 @@
         /// <returns></returns>
         public bool ExistElement(int value)
         {
-            return table[hashFunction(value)].Exist(value);
+            return table[hashFunction.ruleOfHashFunction(value, length)].Exist(value);
         }
 
         /// <summary>
@@ -49,7 +48,7 @@
         {
             if (!this.ExistElement(value))
             {
-                table[hashFunction(value)].InsertToHead(value);
+                table[hashFunction.ruleOfHashFunction(value, length)].InsertToHead(value);
             }
         }
 
@@ -61,7 +60,7 @@
         {
             if (this.ExistElement(value))
             {
-                table[hashFunction(value)].RemoveElement(value);
+                table[hashFunction.ruleOfHashFunction(value, length)].RemoveElement(value);
             }
         }
     }

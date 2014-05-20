@@ -7,14 +7,9 @@
     /// </summary>
     public class UserHashFunction : HashFunction
     {
-        public int lengthOfHashTable()
+        public int ruleOfHashFunction(int value, int lengthOfHashTable)
         {
-            return 5;
-        }
-
-        public int ruleOfHashFunction(int value)
-        {
-            return (value % this.lengthOfHashTable());
+            return (value % lengthOfHashTable);
         }
     }
 }
