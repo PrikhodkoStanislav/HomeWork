@@ -8,7 +8,6 @@
     /// </summary>
     public class Stack<T>
     {
-
         /// <summary>
         /// push element with value to the stack
         /// </summary>

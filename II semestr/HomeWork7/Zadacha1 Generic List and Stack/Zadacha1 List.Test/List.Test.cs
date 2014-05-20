@@ -195,6 +195,25 @@
             Assert.IsTrue(list2.IsEmpty());
         }
 
+        /// <summary>
+        /// Test for list enumerator.
+        /// </summary>
+        [TestMethod]
+        public void ListEnumeratorTest()
+        {
+            list.InsertToHead(5);
+            list.InsertToHead(4);
+            list.InsertToHead(3);
+            list.InsertToHead(2);
+            list.InsertToHead(1);
+            int number = 0;
+            foreach (int value in list)
+            {
+                number = value;
+            }
+            Assert.AreEqual(5, number);
+        }
+
         private List<int> list;
         private List<string> list2;
     }

@@ -1,14 +1,25 @@
 ﻿namespace ListNamespace
 {
     using System;
+    using System.Collections;
 
-    public class List<T>
+    public class List<T> : IEnumerable
     {
         private class ListElement
         {
             public ListElement Next { get; set; }
 
             public T Value { get; set; }
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            ListElement variable = this.head;
+            while (variable != null)
+            {
+                yield return variable.Value;
+                variable = variable.Next;
+            }
         }
 
         private ListElement head;
