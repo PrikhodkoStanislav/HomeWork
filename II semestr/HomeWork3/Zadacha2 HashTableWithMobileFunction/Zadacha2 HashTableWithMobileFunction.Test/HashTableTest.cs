@@ -100,6 +100,19 @@
             Assert.IsTrue(userHashTable.ExistElement(20));
         }
 
+
+        [TestMethod]
+        public void ModifyHashFunctionTest()
+        {
+            hashTable.InsertToHashTable(1);
+            hashTable.InsertToHashTable(15);
+            hashTable.InsertToHashTable(17);
+            hashTable.InsertToHashTable(25);
+            hashTable.InsertToHashTable(77);
+            hashTable.ModifyHashFunction(userHashFunction);
+            Assert.IsTrue(hashTable.ExistElement(25));
+        }
+
         private HashFunctionWith10Elements hashFunction10Elements;
         private HashTable hashTable;
         private UserHashFunction userHashFunction;

@@ -1,6 +1,7 @@
 ﻿namespace HashTableNamespace
 {
     using ListNamespace;
+    using ListElementNamespace;
 
     /// <summary>
     /// Hash table.
@@ -25,9 +26,28 @@
             }
         }
 
-        public void ModifyHashFunction()
+        /// <summary>
+        /// Modify hash fucntion on new function.
+        /// </summary>
+        /// <param name="function"></param>
+        public void ModifyHashFunction(HashFunction function)
         {
-
+            hashFunction = function;
+            List[] newTable = new List[length];
+            for (int i = 0; i < length; i++)
+            {
+                newTable[i] = new List();
+            }
+            for (int i = 0; i < length; i++)
+            {
+                ListElement variable = table[i].head;
+                while (variable != null)
+                {
+                    newTable[function.ruleOfHashFunction(variable.Value, length)].InsertToHead(variable.Value);
+                    variable = variable.Next;
+                }
+            }
+            table = newTable;
         }
 
         /// <summary>

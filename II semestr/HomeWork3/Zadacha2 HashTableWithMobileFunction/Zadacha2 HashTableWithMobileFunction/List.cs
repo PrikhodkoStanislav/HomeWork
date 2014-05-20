@@ -1,20 +1,14 @@
 ﻿namespace ListNamespace
 {
     using System;
+    using ListElementNamespace;
 
     /// <summary>
     /// List.
     /// </summary>
     public class List
     {
-        private class ListElement
-        {
-            public ListElement Next { get; set; }
-
-            public int Value { get; set; }
-        }
-
-        private ListElement head;
+        public ListElement head;
 
         /// <summary>
         /// Insert value in the head of the list.
