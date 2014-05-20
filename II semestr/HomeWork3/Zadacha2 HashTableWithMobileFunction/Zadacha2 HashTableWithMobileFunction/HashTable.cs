@@ -32,7 +32,7 @@
         /// <param name="function"></param>
         public void ModifyHashFunction(HashFunction function)
         {
-            hashFunction = function;
+            this.hashFunction = function;
             List[] newTable = new List[length];
             for (int i = 0; i < length; i++)
             {
@@ -47,7 +47,27 @@
                     variable = variable.Next;
                 }
             }
-            table = newTable;
+            this.table = newTable;
+        }
+
+        public void ModifyLengthOfHashTable(int lengthOfTable)
+        {
+            List[] newTable = new List[lengthOfTable];
+            for (int i = 0; i < lengthOfTable; i++)
+            {
+                newTable[i] = new List();
+            }
+            for (int i = 0; i < length; i++)
+            {
+                ListElement variable = table[i].head;
+                while (variable != null)
+                {
+                    newTable[hashFunction.ruleOfHashFunction(variable.Value, lengthOfTable)].InsertToHead(variable.Value);
+                    variable = variable.Next;
+                }
+            }
+            this.table = newTable;
+            this.length = lengthOfTable;
         }
 
         /// <summary>

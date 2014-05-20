@@ -100,7 +100,9 @@
             Assert.IsTrue(userHashTable.ExistElement(20));
         }
 
-
+        /// <summary>
+        /// Modification hash function.
+        /// </summary>
         [TestMethod]
         public void ModifyHashFunctionTest()
         {
@@ -111,6 +113,19 @@
             hashTable.InsertToHashTable(77);
             hashTable.ModifyHashFunction(userHashFunction);
             Assert.IsTrue(hashTable.ExistElement(25));
+        }
+
+
+        [TestMethod]
+        public void ModifyLengthOfHashTableTest()
+        {
+            hashTable.InsertToHashTable(1);
+            hashTable.InsertToHashTable(15);
+            hashTable.InsertToHashTable(17);
+            hashTable.InsertToHashTable(25);
+            hashTable.InsertToHashTable(77);
+            hashTable.ModifyLengthOfHashTable(5);
+            Assert.IsTrue(hashTable.ExistElement(77));
         }
 
         private HashFunctionWith10Elements hashFunction10Elements;
