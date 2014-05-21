@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ComparatorInt.cs" />
     <Compile Include="ComparatorString.cs" />
     <Compile Include="ShablonSortTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

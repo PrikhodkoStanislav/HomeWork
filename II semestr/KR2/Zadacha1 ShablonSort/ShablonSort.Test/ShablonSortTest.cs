@@ -1,13 +1,8 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SortNamespace;
-using InterfaceNamespace;
-
-
-namespace ShablonSort.Test
+﻿namespace ShablonSort.Test
 {
-    using System.Collections;
-    using System.Collections.Generic;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using SortNamespace;
+    using InterfaceNamespace;
 
     [TestClass]
     public class ShablonSortTest
@@ -15,28 +10,66 @@ namespace ShablonSort.Test
         [TestInitialize]
         public void Initialize()
         {
-            sort = new Sort();
-            arrayOfString = new ArrayList();
+            sort = new Sort<string>();
+            sortInt = new Sort<int>();
+            arrayOfString = new string[10];
+            arrayOfInt = new int[10];
             for (int i = 0; i < 10; i++)
             {
-                for (int j = 0; j < i; j++)
+                for (int j = 10; j > i; j--)
                 {
                     arrayOfString[i] += "a";
                 }
             }
+            for (int i = 0; i < 10; i++)
+            {
+                arrayOfInt[i] = 50 - (2 * i);
+            }
             comparator = new ComparatorString();
+            comparatorInt = new ComparatorInt();
         }
 
+        /// <summary>
+        /// Sort array of string in ascending length.
+        /// </summary>
         [TestMethod]
-        public void TestMethod1()
+        public void SortStringTest()
         {
-            Assert.AreEqual("a", arrayOfString[1]);
-            sort.SortArray(arrayOfString, 10, comparator);
-            Assert.AreEqual("a", arrayOfString[8]);
+            string sourceString = "a";
+            for (int i = 9; i >= 0; i--)
+            {
+                Assert.AreEqual(sourceString, arrayOfString[i]);
+                sourceString += "a";
+            }
+            sort.SortArray(ref arrayOfString, 10, comparator);
+            sourceString = "a";
+            for (int i = 0; i < 10; i++)
+            {
+                Assert.AreEqual(sourceString, arrayOfString[i]);
+                sourceString += "a";
+            }
         }
 
-        private Sort sort;
-        private ArrayList arrayOfString;
-        private InterfaceComparator comparator;
+        /// <summary>
+        /// Sort array of int in ascending elements.
+        /// </summary>
+        [TestMethod]
+        public void SortIntTest()
+        {
+            sortInt.SortArray(ref arrayOfInt, 10, comparatorInt);
+            int number = 32;
+            for (int i = 0; i < 10; i++)
+            {
+                Assert.AreEqual(number, arrayOfInt[i]);
+                number += 2;
+            }
+        }
+
+        private Sort<string> sort;
+        private Sort<int> sortInt;
+        private string[] arrayOfString;
+        private int[] arrayOfInt;
+        private InterfaceComparator<string> comparator;
+        private InterfaceComparator<int> comparatorInt;
     }
 }

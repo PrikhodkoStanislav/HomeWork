@@ -1,30 +1,43 @@
 ﻿namespace SortNamespace
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
     using InterfaceNamespace;
 
-    public class Sort
+    /// <summary>
+    /// Class sort.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class Sort<T>
     {
-        public void SortArray(ArrayList array, int length, InterfaceComparator Compare)
+        /// <summary>
+        /// Bubble sort.
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="length"></param>
+        /// <param name="Compare"></param>
+        public void SortArray(ref T[] array, int length, InterfaceComparator<T> Compare)
         {
             for (int j = 0; j < length - 1; j++)
             {
-                for (int i = 0; i < (length - j); i++)
+                for (int i = 0; i < (length - j - 1); i++)
                 {
                     Compare.NewCompare(array[i]);
-                    if (Compare.CopareTo(array[i + 1]) > 0)
+                    if (Compare.CopareTo(array[i + 1]) < 0)
                     {
-                        Swap(array, i, i + 1);
+                        Swap(ref array, i, i + 1);
                     }
                 }
             }
         }
 
-        public void Swap(ArrayList array, int i, int j)
+        /// <summary>
+        /// Swap elements with indexes i and j in the array.
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
+        public void Swap(ref T[] array, int i, int j)
         {
-            object element = array[i];
+            T element = array[i];
             array[i] = array[j];
             array[j] = element;
         }

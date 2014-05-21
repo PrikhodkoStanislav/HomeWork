@@ -1,21 +1,22 @@
 ﻿namespace ShablonSort.Test
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
     using InterfaceNamespace;
 
-    public class ComparatorString : InterfaceComparator
+    /// <summary>
+    /// Realization comparator string.
+    /// </summary>
+    public class ComparatorString : InterfaceComparator<string>
     {
-        private string element { get; set; }
+        private string string1 { get; set; }
+
         public void NewCompare(string newString)
         {
-            this.element = newString;
+            this.string1 = newString;
         }
 
         public int CopareTo(string string2)
         {
-            return (this.element.Length - string2.Length);
+            return (string2.Length - this.string1.Length);
         }
 
 
