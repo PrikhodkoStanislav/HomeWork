@@ -4,7 +4,7 @@
 
     public interface InterfaceComparator
     {
-        void NewCompare(Type element);
-        int CopareTo(Type element);
+        void NewCompare(object element);
+        int CopareTo(object element);
     }
 }
