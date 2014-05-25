@@ -30,7 +30,7 @@ namespace Zadacha1
         private int[,] matrix = new int[3, 3];
 
         /// <summary>
-        /// Add to atrix new point of letter.
+        /// Add to matrix new point of letter.
         /// </summary>
         /// <param name="index"></param>
         /// <param name="letter"></param>
