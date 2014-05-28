@@ -2,15 +2,30 @@
 {
     using System;
 
+    /// <summary>
+    /// Class list.
+    /// </summary>
     public class List
     {
+        /// <summary>
+        /// Class list element.
+        /// </summary>
         private class ListElement
         {
+            /// <summary>
+            /// Next element.
+            /// </summary>
             public ListElement Next { get; set; }
 
+            /// <summary>
+            /// Value of the element.
+            /// </summary>
             public int Value { get; set; }
         }
 
+        /// <summary>
+        /// Head of the list.
+        /// </summary>
         private ListElement head;
 
         /// <summary>

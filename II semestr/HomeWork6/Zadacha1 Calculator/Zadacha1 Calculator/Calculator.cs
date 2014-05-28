@@ -239,74 +239,24 @@ namespace Zadacha1_Calculator
             textBox1.Text += " " + element.ToString() + " ";
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Number click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void number_Click(object sender, EventArgs e)
         {
-            NumberClick(button1.TabIndex);
+            NumberClick((sender as Button).TabIndex);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Operation click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void operation_Click(object sender, EventArgs e)
         {
-            NumberClick(button2.TabIndex);
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            NumberClick(button3.TabIndex);
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            NumberClick(button4.TabIndex);
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            NumberClick(button5.TabIndex);
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            NumberClick(button6.TabIndex);
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            NumberClick(button7.TabIndex);
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            NumberClick(button8.TabIndex);
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            NumberClick(button9.TabIndex);
-        }
-
-        private void button10_Click(object sender, EventArgs e)
-        {
-            NumberClick(button10.TabIndex);
-        }
-
-        private void button13_Click(object sender, EventArgs e)
-        {
-            OperationClick(button13.Text);
-        }
-
-        private void button14_Click(object sender, EventArgs e)
-        {
-            OperationClick(button14.Text);
-        }
-
-        private void button15_Click(object sender, EventArgs e)
-        {
-            OperationClick(button15.Text);
-        }
-
-        private void button16_Click(object sender, EventArgs e)
-        {
-            OperationClick(button16.Text);
+            OperationClick((sender as Button).Text);
         }
 
         /// <summary>

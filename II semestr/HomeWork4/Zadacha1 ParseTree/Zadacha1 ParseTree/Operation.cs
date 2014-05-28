@@ -5,37 +5,48 @@ namespace ParseTreeNamespace
     /// <summary>
     /// Class operation.
     /// </summary>
-    public class Operation
+    public class Operation : TreeElement
     {
-        /// <summary>
-        /// Value of operation.
-        /// </summary>
-        private char operation { get; set; }
-
-        /// <summary>
-        /// Constructor operation with value.
-        /// </summary>
-        /// <param name="value"></param>
-        public Operation(char value)
+        public virtual char PrintCharElement()
         {
-            this.operation = value;
-        }
-
-        /// <summary>
-        /// Return value of operation.
-        /// </summary>
-        /// <returns></returns>
-        public char ReturnOperation()
-        {
-            return operation;
+            return '#';
         }
 
         /// <summary>
         /// Print operation.
         /// </summary>
-        public void Print()
+        public override void Print(ref string result)
         {
-            Console.Write(operation);
+            Console.Write("( {0} ", this.PrintCharElement());
+            result += "( " + this.PrintCharElement().ToString() + " ";
+            if (this.left != null)
+            {
+                this.left.Print(ref result);
+            }
+            if (this.right != null)
+            {
+                this.right.Print(ref result);
+            }
+        }
+
+        /// <summary>
+        /// Count element by number1 and number2.
+        /// </summary>
+        /// <param name="number1"></param>
+        /// <param name="number2"></param>
+        /// <returns></returns>
+        public virtual int CountElement(int number1, int number2)
+        {
+            return 0;
+        }
+
+        /// <summary>
+        /// Count operation.
+        /// </summary>
+        /// <returns></returns>
+        public override int Count()
+        {
+            return CountElement(this.left.Count(), this.right.Count());
         }
     }
 }

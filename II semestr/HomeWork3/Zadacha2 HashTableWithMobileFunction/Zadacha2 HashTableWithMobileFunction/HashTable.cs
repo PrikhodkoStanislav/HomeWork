@@ -27,14 +27,14 @@
         }
 
         /// <summary>
-        /// Modify hash fucntion on new function.
+        /// Modify hash table.
         /// </summary>
-        /// <param name="function"></param>
-        public void ModifyHashFunction(HashFunction function)
+        /// <param name="length1"></param>
+        /// <param name="length2"></param>
+        public void ModifyHash(int length1, int length2)
         {
-            this.hashFunction = function;
-            List[] newTable = new List[length];
-            for (int i = 0; i < length; i++)
+            List[] newTable = new List[length2];
+            for (int i = 0; i < length2; i++)
             {
                 newTable[i] = new List();
             }
@@ -43,30 +43,30 @@
                 ListElement variable = table[i].head;
                 while (variable != null)
                 {
-                    newTable[function.ruleOfHashFunction(variable.Value, length)].InsertToHead(variable.Value);
+                    newTable[hashFunction.ruleOfHashFunction(variable.Value, length2)].InsertToHead(variable.Value);
                     variable = variable.Next;
                 }
             }
             this.table = newTable;
         }
 
+        /// <summary>
+        /// Modify hash function on new function.
+        /// </summary>
+        /// <param name="function"></param>
+        public void ModifyHashFunction(HashFunction function)
+        {
+            this.hashFunction = function;
+            ModifyHash(length, length);
+        }
+
+        /// <summary>
+        /// Modify length of hash table.
+        /// </summary>
+        /// <param name="lengthOfTable"></param>
         public void ModifyLengthOfHashTable(int lengthOfTable)
         {
-            List[] newTable = new List[lengthOfTable];
-            for (int i = 0; i < lengthOfTable; i++)
-            {
-                newTable[i] = new List();
-            }
-            for (int i = 0; i < length; i++)
-            {
-                ListElement variable = table[i].head;
-                while (variable != null)
-                {
-                    newTable[hashFunction.ruleOfHashFunction(variable.Value, lengthOfTable)].InsertToHead(variable.Value);
-                    variable = variable.Next;
-                }
-            }
-            this.table = newTable;
+            ModifyHash(length, lengthOfTable);
             this.length = lengthOfTable;
         }
 

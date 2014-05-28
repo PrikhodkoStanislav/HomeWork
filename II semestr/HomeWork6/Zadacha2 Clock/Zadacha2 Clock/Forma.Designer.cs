@@ -2,7 +2,7 @@
 {
     using System.Windows.Forms;
 
-    partial class Form1
+    partial class Forma
     {
         /// <summary>
         /// Required designer variable.
@@ -120,7 +120,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.MaximumSize = new System.Drawing.Size(300, 300);
             this.MinimumSize = new System.Drawing.Size(300, 300);
-            this.Name = "Form1";
+            this.Name = "Forma";
             this.Text = "Clock";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

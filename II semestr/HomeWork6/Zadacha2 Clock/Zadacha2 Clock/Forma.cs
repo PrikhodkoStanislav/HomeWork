@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace Zadacha2_Clock
 {
-    public partial class Form1 : Form
+    public partial class Forma : Form
     {
-        public Form1()
+        public Forma()
         {
             InitializeComponent();
             PrintTime();
@@ -27,9 +27,30 @@ namespace Zadacha2_Clock
         /// </summary>
         private void TimeNow(object sender, EventArgs e)
         {
-            this.hours.Text = DateTime.Now.Hour.ToString();
-            this.minutes.Text = DateTime.Now.Minute.ToString();
-            this.seconds.Text = DateTime.Now.Second.ToString();
+            if (DateTime.Now.Hour < 10)
+            {
+                this.hours.Text = "0" + DateTime.Now.Hour.ToString();
+            }
+            else
+            {
+                this.hours.Text = DateTime.Now.Hour.ToString();
+            }
+            if (DateTime.Now.Minute < 10)
+            {
+                this.minutes.Text = "0" + DateTime.Now.Minute.ToString();
+            }
+            else
+            {
+                this.minutes.Text = DateTime.Now.Minute.ToString();
+            }
+            if (DateTime.Now.Second < 10)
+            {
+                this.seconds.Text = "0" + DateTime.Now.Second.ToString();
+            }
+            else
+            {
+                this.seconds.Text = DateTime.Now.Second.ToString();
+            }
         }
 
         /// <summary>

@@ -161,44 +161,9 @@ namespace Tic_Tac_Toe_Silverlight
             }
         }
 
-        private void Button1_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Do(Button1);
-        }
-
-        private void Button2_Click(object sender, RoutedEventArgs e)
-        {
-            Do(Button2);
-        }
-
-        private void Button3_Click(object sender, RoutedEventArgs e)
-        {
-            Do(Button3);
-        }
-
-        private void Button4_Click(object sender, RoutedEventArgs e)
-        {
-            Do(Button4);
-        }
-        private void Button5_Click(object sender, RoutedEventArgs e)
-        {
-            Do(Button5);
-        }
-        private void Button6_Click(object sender, RoutedEventArgs e)
-        {
-            Do(Button6);
-        }
-        private void Button7_Click(object sender, RoutedEventArgs e)
-        {
-            Do(Button7);
-        }
-        private void Button8_Click(object sender, RoutedEventArgs e)
-        {
-            Do(Button8);
-        }
-        private void Button9_Click(object sender, RoutedEventArgs e)
-        {
-            Do(Button9);
+            Do(sender as Button);
         }
     }
 }

@@ -10,16 +10,7 @@ namespace ParseTreeNamespace
         /// <summary>
         /// Head of tree.
         /// </summary>
-        private TreeElement head { get; set; }
-
-        /// <summary>
-        /// Return head of tree.
-        /// </summary>
-        /// <returns></returns>
-        public TreeElement ReturnHead()
-        {
-            return head;
-        }
+        public TreeElement head { get; set; }
 
         /// <summary>
         /// Is element number?
@@ -41,6 +32,31 @@ namespace ParseTreeNamespace
             return ((element == '+') | (element == '-') | (element == '*') | (element == '/'));
         }
 
+        private Operation NewOperation(char value)
+        {
+            Operation theOperation;
+            if (value == '+')
+            {
+                theOperation = new OperationSum();
+            }
+            else if (value == '-')
+            {
+                theOperation = new OperationDiff();
+            }
+            else if (value == '*')
+            {
+                theOperation = new OperationMulti();
+            }
+            else
+            {
+                theOperation = new OperationDiv();
+            }
+            theOperation.left = null;
+            theOperation.right = null;
+            theOperation.up = null;
+            return theOperation;
+        }
+
         /// <summary>
         /// Insert sub tree by expression and index-variable.
         /// </summary>
@@ -54,8 +70,8 @@ namespace ParseTreeNamespace
                 char symbol = expression[index];
                 if (symbol == '(')
                 {
-                    TreeElement newElement = new TreeElement(expression[index + 1]);
-                    newElement.WriteUp(element);
+                    TreeElement newElement = NewOperation(expression[index + 1]);
+                    newElement.up = element;
                     if (element == null)
                     {
                         this.head = newElement;
@@ -63,13 +79,13 @@ namespace ParseTreeNamespace
                     }
                     else
                     {
-                        if (element.ReturnLeft() == null)
+                        if (element.left == null)
                         {
-                            element.WriteLeft(newElement);
+                            element.left = newElement;
                         }
                         else
                         {
-                            element.WriteRight(newElement);
+                            element.right = newElement;
                         }
                         element = newElement;
                     }
@@ -81,14 +97,14 @@ namespace ParseTreeNamespace
                 {
                     if (IsNumber(expression[index]))
                     {
-                        TreeElement newTreeElement = new TreeElement(element, (int)expression[index] - (int)'0');
+                        TreeElement newTreeElement = new Operand(element, (int)expression[index] - (int)'0');
                         index++;
                     }
                     else
                     {
                         if (expression[index] == ')')
                         {
-                            element = element.ReturnUp();
+                            element = element.up;
                             index++;
                         }
                     }
@@ -102,35 +118,9 @@ namespace ParseTreeNamespace
         /// <param name="expression"></param>
         public void WriteInTree(string expression)
         {
-            TreeElement element = this.ReturnHead();
+            TreeElement element = this.head;
             int i = 0;
             InsertSubTree(expression, ref i, element);
-        }
-
-        /// <summary>
-        /// Print sub tree.
-        /// </summary>
-        /// <param name="element"></param>
-        /// <param name="result"></param>
-        private void PrintSubTree(TreeElement element, ref string result)
-        {
-            if (IsFunction(element.ReturnValue()))
-            {
-                Console.Write("( {0} ", element.ReturnValue());
-                result += "( " + element.ReturnValue().ToString() + " ";
-                PrintSubTree(element.ReturnLeft(), ref result);
-                PrintSubTree(element.ReturnRight(), ref result);
-            }
-            else
-            {
-                Console.Write("{0} ", element.ReturnNumber());
-                result += element.ReturnNumber().ToString() + " ";
-                if (element == element.ReturnUp().ReturnRight())
-                {
-                    Console.Write(") ");
-                    result += ") ";
-                }
-            }
         }
 
         /// <summary>
@@ -139,18 +129,23 @@ namespace ParseTreeNamespace
         /// <returns></returns>
         public string Print()
         {
-            TreeElement element = this.ReturnHead();
+            string result = "";
+            this.head.Print(ref result);
+            return result;
+        }
+
+        /// <summary>
+        /// Return value of the expression-tree.
+        /// </summary>
+        /// <returns></returns>
+        public int ValueOfExpression()
+        {
+            TreeElement element = this.head;
             if (element != null)
             {
-                string result = "";
-                PrintSubTree(element, ref result);
-                return result;
+                return (element.Count());
             }
-            else
-            {
-                Console.WriteLine("Tree is clear!");
-                return "Tree is clear!";
-            }
+            return 0;
         }
     }
 }

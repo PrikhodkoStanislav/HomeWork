@@ -12,7 +12,6 @@
         public void Initialize()
         {
             tree = new Tree();
-            parseTree = new ParseTree();
         }
 
         /// <summary>
@@ -25,7 +24,7 @@
             string expression = "(*(+11)2)";
             tree.WriteInTree(expression);
             Assert.AreEqual("( * ( + 1 1 ) 2 ) ", tree.Print());
-            Assert.AreEqual(4, parseTree.ValueOfExpression(tree));
+            Assert.AreEqual(4, tree.ValueOfExpression());
         }
 
         /// <summary>
@@ -38,7 +37,7 @@
             string expression = "(/10)";
             tree.WriteInTree(expression);
             Assert.AreEqual("( / 1 0 ) ", tree.Print());
-            int result = parseTree.ValueOfExpression(tree);
+            int result = tree.ValueOfExpression();
         }
 
         /// <summary>
@@ -51,10 +50,9 @@
             string expression = "(+(+(/(-83)5)2)2)";
             tree.WriteInTree(expression);
             Assert.AreEqual("( + ( + ( / ( - 8 3 ) 5 ) 2 ) 2 ) ", tree.Print());
-            Assert.AreEqual(5, parseTree.ValueOfExpression(tree));
+            Assert.AreEqual(5, tree.ValueOfExpression());
         }
 
         private Tree tree;
-        private ParseTree parseTree;
     }
 }

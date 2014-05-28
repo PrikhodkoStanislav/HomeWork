@@ -43,8 +43,11 @@
   <ItemGroup>
     <Compile Include="ExceptionDivisionBy0.cs" />
     <Compile Include="Operand.cs" />
+    <Compile Include="OperationSum.cs" />
+    <Compile Include="OperationDiff.cs" />
     <Compile Include="Operation.cs" />
-    <Compile Include="ParseTree.cs" />
+    <Compile Include="OperationDiv.cs" />
+    <Compile Include="OperationMulti.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tree.cs" />

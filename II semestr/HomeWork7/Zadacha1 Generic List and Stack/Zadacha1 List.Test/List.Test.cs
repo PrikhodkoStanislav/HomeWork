@@ -209,7 +209,8 @@
             int number = 0;
             foreach (int value in list)
             {
-                number = value;
+                number++;
+                Assert.AreEqual(number, value);
             }
             Assert.AreEqual(5, number);
         }
