@@ -19,5 +19,5 @@ private:
     Ui::CalculatorWindow *ui;
 
 private slots:
-  void result();
+    void result();
 };

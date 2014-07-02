@@ -9,6 +9,6 @@ class Calculator
 {
 public:
 
-  // /Method which return the result of operation on two numbers.
-  static double calc(int value1, int value2, char operation);
+    /// Method which return the result of operation on two numbers.
+    static double calc(int value1, int value2, char operation);
 };
