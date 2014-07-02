@@ -162,12 +162,6 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuCalculator">
-    <property name="title">
-     <string>Calculator</string>
-    </property>
-   </widget>
-   <addaction name="menuCalculator"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">

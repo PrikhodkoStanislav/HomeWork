@@ -1,4 +1,4 @@
-#include <QtWidgets>
+#include <QtWidgets/QSpinBox>
 
 #include "calculatorwindow.h"
 #include "ui_calculatorwindow.h"
