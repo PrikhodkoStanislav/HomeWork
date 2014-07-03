@@ -1,8 +1,8 @@
-#ifndef CANNONWINDOW_H
-#define CANNONWINDOW_H
+#pragma once
 
-#include <QMainWindow>
-#include <QtWidgets>
+#include <QtWidgets/QMainWindow>
+#include <QtWidgets/QGraphicsScene>
+#include <QtWidgets/QGraphicsView>
 
 namespace Ui {
 class CannonWindow;
@@ -22,5 +22,3 @@ private:
     QGraphicsScene *scene;
     QGraphicsView *view;
 };
-
-#endif // CANNONWINDOW_H

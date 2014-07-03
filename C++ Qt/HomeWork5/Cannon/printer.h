@@ -1,7 +1,8 @@
-#ifndef PRINTER_H
-#define PRINTER_H
+#pragma once
 
-#include <QtWidgets>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QGraphicsItem>
+#include <QtGui/QPainter>
 
 class Printer : public QGraphicsItem
 {
@@ -10,5 +11,3 @@ public:
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 };
-
-#endif // PRINTER_H

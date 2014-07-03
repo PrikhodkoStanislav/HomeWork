@@ -1,5 +1,6 @@
+#include <QtWidgets/QApplication>
+
 #include "cannonwindow.h"
-#include <QApplication>
 
 int main(int argc, char *argv[])
 {
