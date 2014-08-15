@@ -10,7 +10,7 @@ CannonWindow::CannonWindow(QWidget *parent) :
 
     scene = new QGraphicsScene();
     view = new QGraphicsView(scene);
-    QGraphicsItem *printer = new Printer();
+    printer = new Printer();
     scene->addItem(printer);
 
     this->ui->centralWidget->layout()->addWidget(view);
@@ -18,5 +18,8 @@ CannonWindow::CannonWindow(QWidget *parent) :
 
 CannonWindow::~CannonWindow()
 {
+    delete printer;
+    delete scene;
+    delete view;
     delete ui;
 }

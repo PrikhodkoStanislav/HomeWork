@@ -21,4 +21,5 @@ private:
     Ui::CannonWindow *ui;
     QGraphicsScene *scene;
     QGraphicsView *view;
+    QGraphicsItem *printer;
 };
