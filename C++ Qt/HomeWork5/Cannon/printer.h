@@ -4,6 +4,7 @@
 #include <QtWidgets/QGraphicsItem>
 #include <QtGui/QPainter>
 
+///Class draw the cannon-pie.
 class Printer : public QGraphicsItem
 {
 public:
