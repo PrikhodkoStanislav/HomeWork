@@ -3,6 +3,7 @@
 #include "circle.h"
 #include "time.h"
 #include <QTimer>
+#include <QTime>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -20,10 +21,19 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(timer, &QTimer::timeout, this, &MainWindow::reaction);
     timer->start(500);
     scene->addItem(time);
+    numericDisplay();
+}
+
+void MainWindow::numericDisplay()
+{
+    realTime = new QTime();
+    QTime timeKnow = realTime->currentTime();
+    ui->time->setText((QString)timeKnow.toString());
 }
 
 MainWindow::~MainWindow()
 {
+    delete realTime;
     delete timer;
     delete time;
     delete circle;
@@ -38,4 +48,5 @@ void MainWindow::reaction()
     delete time;
     time = new Time();
     scene->addItem(time);
+    numericDisplay();
 }

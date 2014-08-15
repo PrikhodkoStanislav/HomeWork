@@ -25,6 +25,8 @@ private:
     QGraphicsItem *time;
     QGraphicsItem *circle;
     QTimer *timer;
+    QTime *realTime;
+    void numericDisplay();
 
 private slots:
     void reaction();
