@@ -4,6 +4,7 @@
 #include <QtWidgets/QGraphicsItem>
 #include <QtGui/QPainter>
 
+/// Class draw clock dial.
 class Circle : public QGraphicsItem
 {
 public:

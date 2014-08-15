@@ -8,6 +8,7 @@ namespace Ui {
 class MainWindow;
 }
 
+/// Class add clock on the window.
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
