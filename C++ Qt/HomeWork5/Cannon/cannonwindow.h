@@ -8,7 +8,7 @@ namespace Ui {
 class CannonWindow;
 }
 
-///Class add cannon on the scene and view.
+/// Class add cannon on the scene and view.
 class CannonWindow : public QMainWindow
 {
     Q_OBJECT
