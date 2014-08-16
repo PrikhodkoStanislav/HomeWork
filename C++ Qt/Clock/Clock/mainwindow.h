@@ -29,5 +29,7 @@ private:
     void numericDisplay();
 
 private slots:
-    void reaction();
+    void reactionSecond();
+    void reactionGMTMSK();
+    void reactionMSKGMT();
 };

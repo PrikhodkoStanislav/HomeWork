@@ -6,6 +6,11 @@ Time::Time()
 {
 }
 
+Time::Time(int value)
+{
+    Time::relativelyGMT = value - 4;
+}
+
 QRectF Time::boundingRect() const
 {
     return QRectF(0, 0, 300, 300);
@@ -45,7 +50,7 @@ QLineF Time::lineHour()
     double realHour = knowTime().hour();
     double realMinute = knowTime().minute();
     double realSecond = knowTime().second();
-    double realAngle = 3.14 * (realHour + (realMinute + realSecond / 60) / 60) / 6;
+    double realAngle = 3.14 * (realHour + Time::relativelyGMT + (realMinute + realSecond / 60) / 60) / 6;
     double alpha = - 3.14 / 2 + realAngle;
     double x = 110 * cos(alpha) - 0 * sin(alpha) + 150;
     double y = 110 * sin(alpha) + 0 * cos(alpha) + 150;

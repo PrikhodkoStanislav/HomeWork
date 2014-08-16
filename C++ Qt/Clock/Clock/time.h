@@ -9,7 +9,12 @@ class Time : public QGraphicsItem
 {
 public:
     Time();
+    Time(int value);
     QRectF boundingRect() const override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+
+private:
+    int relativelyGMT = 0;
 
     /// Return real time.
     QTime knowTime();
@@ -22,6 +27,4 @@ public:
 
     /// Hand of the hour.
     QLineF lineHour();
-
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 };

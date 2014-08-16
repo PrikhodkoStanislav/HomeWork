@@ -18,17 +18,23 @@ MainWindow::MainWindow(QWidget *parent) :
     time = new Time();
     scene->addItem(circle);
     timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, &MainWindow::reaction);
+    connect(timer, &QTimer::timeout, this, &MainWindow::reactionSecond);
     timer->start(500);
     scene->addItem(time);
     numericDisplay();
+    connect(ui->gmtBox, SIGNAL(valueChanged(int)), SLOT(reactionGMTMSK()));
+    connect(ui->mskBox, SIGNAL(valueChanged(int)), SLOT(reactionMSKGMT()));
+    //connect(ui->gmtBox, &QSpinBox::valueChanged, this, &MainWindow::reactionGMTMSK);
+    //connect(ui->mskBox, &QSpinBox::valueChanged, this, &MainWindow::reactionMSKGMT);
 }
 
 void MainWindow::numericDisplay()
 {
     realTime = new QTime();
     QTime timeKnow = realTime->currentTime();
-    ui->time->setText((QString)timeKnow.toString());
+    QTime *timeWithGMT = new QTime(timeKnow.hour() + ui->gmtBox->value() - 4, timeKnow.minute(), timeKnow.second());
+    ui->time->setText((QString)timeWithGMT->toString());
+    delete timeWithGMT;
 }
 
 MainWindow::~MainWindow()
@@ -42,11 +48,21 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::reaction()
+void MainWindow::reactionSecond()
 {
     scene->removeItem(time);
     delete time;
-    time = new Time();
+    time = new Time(ui->gmtBox->value());
     scene->addItem(time);
     numericDisplay();
+}
+
+void MainWindow::reactionGMTMSK()
+{
+    ui->mskBox->setValue(ui->gmtBox->value() - 4);
+}
+
+void MainWindow::reactionMSKGMT()
+{
+    ui->gmtBox->setValue(ui->mskBox->value() + 4);
 }
