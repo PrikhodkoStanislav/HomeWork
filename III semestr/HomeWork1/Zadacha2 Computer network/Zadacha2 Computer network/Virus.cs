@@ -2,14 +2,29 @@
 
 namespace Zadacha2_Computer_network
 {
+    /// <summary>
+    /// Class for system of the viruses in the computer network.
+    /// </summary>
     public class Virus
     {
+        /// <summary>
+        /// Constructor for the virus system.
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="numbersOfComputers"></param>
         public Virus(int number, int[] numbersOfComputers)
         {
             this.numberOfViruses = number;
             this.computers = numbersOfComputers;
         }
 
+        /// <summary>
+        /// Can viruses go to healthy computers in the network?
+        /// </summary>
+        /// <param name="numberOfComputers"></param>
+        /// <param name="matrix"></param>
+        /// <param name="dirtyComputers"></param>
+        /// <returns></returns>
         public bool CanGo(int numberOfComputers ,int[,] matrix, bool[] dirtyComputers)
         {
             for (int i = 0; i < numberOfViruses; i++)
@@ -25,6 +40,14 @@ namespace Zadacha2_Computer_network
             return false;
         }
 
+        /// <summary>
+        /// Virus go to the computer!
+        /// </summary>
+        /// <param name="numberOfComputers"></param>
+        /// <param name="matrix"></param>
+        /// <param name="dirtyComputers"></param>
+        /// <param name="os"></param>
+        /// <param name="start"></param>
         public void Go(int numberOfComputers, int[,] matrix, bool[] dirtyComputers, OS os, ref int start)
         {
             for (int i = start; i < numberOfViruses; i++)
@@ -67,6 +90,13 @@ namespace Zadacha2_Computer_network
             return;
         }
 
+        /// <summary>
+        /// Return number of the attacked computer.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="variants"></param>
+        /// <param name="os"></param>
+        /// <returns></returns>
         private int Road(int index, int[] variants, OS os)
         {
             int sum = 0;
@@ -75,7 +105,7 @@ namespace Zadacha2_Computer_network
                 sum += os.probabilityOfComputer(variants[i]);
             }
             int[] arrayOf100Probability = new int[index];
-            arrayOf100Probability[0] = 100 * (os.probabilityOfComputer(variants[0]) / sum);
+            arrayOf100Probability[0] = (100 * os.probabilityOfComputer(variants[0])) / sum;
             for (int i = 1; i < index; i++)
             {
                 arrayOf100Probability[i] = arrayOf100Probability[i - 1] + 100 * (os.probabilityOfComputer(variants[i]) / sum);
@@ -92,21 +122,27 @@ namespace Zadacha2_Computer_network
             return (index - 1);
         }
 
+        /// <summary>
+        /// Attack the computer!
+        /// </summary>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <param name="dirtyComputers"></param>
         private void Infection(int from, int to, bool[] dirtyComputers)
         {
-            //for (int i = 0; i < numberOfViruses; i++)
-            //{
-                //if (computers[i] == from)
-                //{
-                //    computers[i] = to;
-                //}
-            //}
-            computers[numberOfViruses] = to;//
-            numberOfViruses++;//
+            computers[numberOfViruses] = to;
+            numberOfViruses++;
             dirtyComputers[to] = true;
         }
 
+        /// <summary>
+        /// Number of viruses in the network.S
+        /// </summary>
         private int numberOfViruses;
+
+        /// <summary>
+        /// Numbers of dirty computers.
+        /// </summary>
         private int[] computers;
     }
 }
