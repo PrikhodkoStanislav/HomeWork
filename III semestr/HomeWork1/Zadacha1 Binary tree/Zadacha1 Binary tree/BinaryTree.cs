@@ -6,7 +6,7 @@ namespace Zadacha1_Binary_tree
     /// <summary>
     /// Class binary tree.
     /// </summary>
-    public class BinaryTree : IEnumerable
+    public class BinaryTree<T> : IEnumerable
     {
         /// <summary>
         /// Get enumerator.
@@ -29,16 +29,16 @@ namespace Zadacha1_Binary_tree
         /// Fill list with elements of tree in the true order.
         /// </summary>
         /// <param name="element"></param>
-        private void ElementsOfTree(TreeElement element)
+        private void ElementsOfTree(TreeElement<T> element)
         {
             this.listOfElements.Add(element);
-            if (element.leftElement != null)
+            if (element.LeftElement != null)
             {
-                ElementsOfTree(element.leftElement);
+                ElementsOfTree(element.LeftElement);
             }
-            if (element.rightElement != null)
+            if (element.RightElement != null)
             {
-                ElementsOfTree(element.rightElement);
+                ElementsOfTree(element.RightElement);
             }
         }
 
@@ -46,9 +46,9 @@ namespace Zadacha1_Binary_tree
         /// Add element in tree.
         /// </summary>
         /// <param name="value"></param>
-        public void AddElement(int value)
+        public void AddElement(T value)
         {
-            TreeElement element = new TreeElement(value);
+            TreeElement<T> element = new TreeElement<T>(value);
             if (this.root == null)
             {
                 this.root = element;
@@ -62,26 +62,26 @@ namespace Zadacha1_Binary_tree
         /// </summary>
         /// <param name="element"></param>
         /// <param name="rootOfSubTree"></param>
-        private void AddElementInSubTree(TreeElement element, TreeElement rootOfSubTree)
+        private void AddElementInSubTree(TreeElement<T> element, TreeElement<T> rootOfSubTree)
         {
-            if (rootOfSubTree.value > element.value)
+            if (rootOfSubTree.Value > element.Value)
             {
-                if (rootOfSubTree.leftElement == null)
+                if (rootOfSubTree.LeftElement == null)
                 {
-                    rootOfSubTree.leftElement = element;
+                    rootOfSubTree.LeftElement = element;
                     return;
                 }
-                this.AddElementInSubTree(element, rootOfSubTree.leftElement);
+                this.AddElementInSubTree(element, rootOfSubTree.LeftElement);
                 return;
             }
-            if (rootOfSubTree.value < element.value)
+            if (rootOfSubTree.Value < element.Value)
             {
-                if (rootOfSubTree.rightElement == null)
+                if (rootOfSubTree.RightElement == null)
                 {
-                    rootOfSubTree.rightElement = element;
+                    rootOfSubTree.RightElement = element;
                     return;
                 }
-                this.AddElementInSubTree(element, rootOfSubTree.rightElement);
+                this.AddElementInSubTree(element, rootOfSubTree.RightElement);
                 return;
             }
         }
@@ -91,61 +91,78 @@ namespace Zadacha1_Binary_tree
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public bool ExistElement(int value)
+        public bool ExistElement(T value)
         {
             if (root == null)
             {
                 return false;
             }
-            listOfElements.Clear();
-            ElementsOfTree(root);
-            foreach (TreeElement element in listOfElements)
+            return ExistElementInSubTree(root, value);
+        }
+
+        /// <summary>
+        /// Is element in subtree with root element?
+        /// </summary>
+        /// <param name="rootElement"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private bool ExistElementInSubTree(TreeElement<T> rootElement, T value)
+        {
+            if (rootElement.Value  == value)
             {
-                if (element.value == value)
-                {
-                    return true;
-                }
+                return true;
             }
-            return false;
+            else
+            {
+                if (rootElement.Value > value && rootElement.LeftElement != null)
+                {
+                    return ExistElementInSubTree(rootElement.LeftElement, value);
+                }
+                if (rootElement.Value < value && rootElement.RightElement != null)
+                {
+                    return ExistElementInSubTree(rootElement.RightElement, value);
+                }
+                return false;
+            }
         }
 
         /// <summary>
         /// Remove element from tree.
         /// </summary>
         /// <param name="value"></param>
-        public void RemoveElement(int value)
+        public void RemoveElement(T value)
         {
             if (!this.ExistElement(value))
             {
                 return;
             }
-            if (root.value == value)
+            if (root.Value == value)
             {
-                if (root.leftElement == null)
+                if (root.LeftElement == null)
                 {
-                    root = root.rightElement;
+                    root = root.RightElement;
                     return;
                 }
-                if (root.rightElement == null)
+                if (root.RightElement == null)
                 {
-                    root = root.leftElement;
+                    root = root.LeftElement;
                     return;
                 }
-                if (root.rightElement.leftElement == null)
+                if (root.RightElement.LeftElement == null)
                 {
-                    root.rightElement.leftElement = root.leftElement;
-                    root = root.rightElement;
+                    root.RightElement.LeftElement = root.LeftElement;
+                    root = root.RightElement;
                 }
-                TreeElement temp = root.rightElement;
-                TreeElement element = root;
-                while (temp.leftElement.leftElement != null)
+                TreeElement<T> temp = root.RightElement;
+                TreeElement<T> element = root;
+                while (temp.LeftElement.LeftElement != null)
                 {
-                    temp = temp.leftElement;
+                    temp = temp.LeftElement;
                 }
-                temp.leftElement.leftElement = root.leftElement;
-                temp.leftElement = temp.leftElement.rightElement;
-                root = temp.leftElement;
-                root.rightElement = element.rightElement;
+                temp.LeftElement.LeftElement = root.LeftElement;
+                temp.LeftElement = temp.LeftElement.RightElement;
+                root = temp.LeftElement;
+                root.RightElement = element.RightElement;
                 return;
             }
             this.RemoveElementFromSubTree(value, root);
@@ -156,26 +173,26 @@ namespace Zadacha1_Binary_tree
         /// </summary>
         /// <param name="value"></param>
         /// <param name="rootOfSubTree"></param>
-        public void RemoveElementFromSubTree(int value, TreeElement rootOfSubTree)
+        public void RemoveElementFromSubTree(T value, TreeElement<T> rootOfSubTree)
         {
-            if (rootOfSubTree.value > value)
+            if (rootOfSubTree.Value > value)
             {
-                if (rootOfSubTree.leftElement.value == value)
+                if (rootOfSubTree.LeftElement.Value == value)
                 {
-                    this.DeleteElement(rootOfSubTree.leftElement, rootOfSubTree);
+                    this.DeleteElement(rootOfSubTree.LeftElement, rootOfSubTree);
                     return;
                 }
-                RemoveElementFromSubTree(value, rootOfSubTree.leftElement);
+                RemoveElementFromSubTree(value, rootOfSubTree.LeftElement);
                 return;
             }
-            if (rootOfSubTree.value < value)
+            if (rootOfSubTree.Value < value)
             {
-                if (rootOfSubTree.rightElement.value == value)
+                if (rootOfSubTree.RightElement.Value == value)
                 {
-                    this.DeleteElement(rootOfSubTree.rightElement, rootOfSubTree);
+                    this.DeleteElement(rootOfSubTree.RightElement, rootOfSubTree);
                     return;
                 }
-                this.RemoveElementFromSubTree(value, rootOfSubTree.rightElement);
+                this.RemoveElementFromSubTree(value, rootOfSubTree.RightElement);
                 return;
             }
         }
@@ -185,69 +202,69 @@ namespace Zadacha1_Binary_tree
         /// </summary>
         /// <param name="element"></param>
         /// <param name="parent"></param>
-        private void DeleteElement(TreeElement element, TreeElement parent)
+        private void DeleteElement(TreeElement<T> element, TreeElement<T> parent)
         {
-            if (element == parent.leftElement)
+            if (element == parent.LeftElement)
             {
-                if (element.leftElement == null)
+                if (element.LeftElement == null)
                 {
-                    parent.leftElement = element.rightElement;
+                    parent.LeftElement = element.RightElement;
                     return;
                 }
-                if (element.rightElement == null)
+                if (element.RightElement == null)
                 {
-                    parent.leftElement = element.leftElement;
+                    parent.LeftElement = element.LeftElement;
                     return;
                 }
-                if (element.rightElement.leftElement == null)
+                if (element.RightElement.LeftElement == null)
                 {
-                    element.rightElement.leftElement = element.leftElement;
-                    parent.leftElement = element.rightElement;
+                    element.RightElement.LeftElement = element.LeftElement;
+                    parent.LeftElement = element.RightElement;
                     return;
                 }
-                TreeElement temp = element.rightElement;
-                while (temp.leftElement.leftElement != null)
+                TreeElement<T> temp = element.RightElement;
+                while (temp.LeftElement.LeftElement != null)
                 {
-                    temp = temp.leftElement;
+                    temp = temp.LeftElement;
                 }
-                temp.leftElement.leftElement = element.leftElement;
-                parent.leftElement = temp.leftElement;
-                parent.leftElement.rightElement = element.rightElement;
-                temp.leftElement = temp.leftElement.rightElement;
+                temp.LeftElement.LeftElement = element.LeftElement;
+                parent.LeftElement = temp.LeftElement;
+                parent.LeftElement.RightElement = element.RightElement;
+                temp.LeftElement = temp.LeftElement.RightElement;
                 return;
             }
             else
             {
-                if (element.leftElement == null)
+                if (element.LeftElement == null)
                 {
-                    parent.rightElement = element.rightElement;
+                    parent.RightElement = element.RightElement;
                     return;
                 }
-                if (element.rightElement == null)
+                if (element.RightElement == null)
                 {
-                    parent.rightElement = element.leftElement;
+                    parent.RightElement = element.LeftElement;
                     return;
                 }
-                if (element.rightElement.leftElement == null)
+                if (element.RightElement.LeftElement == null)
                 {
-                    element.rightElement.leftElement = element.leftElement;
-                    parent.rightElement = element.rightElement;
+                    element.RightElement.LeftElement = element.LeftElement;
+                    parent.RightElement = element.RightElement;
                     return;
                 }
-                TreeElement temp = element.rightElement;
-                while (temp.leftElement.leftElement != null)
+                TreeElement<T> temp = element.RightElement;
+                while (temp.LeftElement.LeftElement != null)
                 {
-                    temp = temp.leftElement;
+                    temp = temp.LeftElement;
                 }
-                temp.leftElement.leftElement = element.leftElement;
-                parent.rightElement = temp.leftElement;
-                parent.rightElement.rightElement = element.rightElement;
-                temp.leftElement = temp.leftElement.rightElement;
+                temp.LeftElement.LeftElement = element.LeftElement;
+                parent.RightElement = temp.LeftElement;
+                parent.RightElement.RightElement = element.RightElement;
+                temp.LeftElement = temp.LeftElement.RightElement;
                 return;
             }
         }
 
-        private TreeElement root;
-        private List<TreeElement> listOfElements = new List<TreeElement>();
+        private TreeElement<T> root;
+        private List<TreeElement<T>> listOfElements = new List<TreeElement<T>>();
     }
 }

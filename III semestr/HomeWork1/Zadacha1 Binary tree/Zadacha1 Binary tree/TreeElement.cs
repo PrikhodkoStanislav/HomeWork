@@ -1,34 +1,53 @@
-﻿namespace Zadacha1_Binary_tree
+﻿using System;
+
+namespace Zadacha1_Binary_tree
 {
     /// <summary>
     /// Class tree element.
     /// </summary>
-    public class TreeElement
+    public class TreeElement<T> : IComparable
     {
         /// <summary>
         /// Constructor of tree element with value.
         /// </summary>
         /// <param name="value"></param>
-        public TreeElement(int value)
+        public TreeElement(T value)
         {
-            this.value = value;
-            this.leftElement = null;
-            this.rightElement = null;
+            this.Value = value;
+            this.LeftElement = null;
+            this.RightElement = null;
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null)
+            {
+                return 2;
+            }
+            TreeElement<T> element = obj as TreeElement<T>;
+            if (this.Value == element.Value)
+            {
+                return 0;
+            }
+            if (this.Value > element.Value)
+            {
+                return 1;
+            }
         }
 
         /// <summary>
         /// Value of tree element.
         /// </summary>
-        public int value { get; set; }
+        public T Value { get; set; }
 
         /// <summary>
         /// Left element of tree element.
         /// </summary>
-        public TreeElement leftElement { get; set; }
+        public TreeElement<T> LeftElement { get; set; }
 
         /// <summary>
         /// Right element of tree element.
         /// </summary>
-        public TreeElement rightElement { get; set; }
+        public TreeElement<T> RightElement { get; set; }
     }
 }
