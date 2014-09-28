@@ -1,0 +1,70 @@
+Homework 2
+Code Review
+
+1. https://github.com/qreal/qreal/blob/master/qrgui/umllib/sdfRenderer.h
+
+1) Три паблик класса объявлены в одном файле. Лучше разделить их на три файла с общим неймспейсом.
+
+2) Некоторые методы имеют слитное написание названий, где каждое следующее слово начинается с Заглавной буквы.
+Например: 
+void noScale();
+int pictureWidth() { return first_size_x; }
+int pictureHeight() { return first_size_y; }
+void setElementRepo(ElementRepoInterface *elementRepo);
+и т.д.
+А некоторые названия методов состоят из нескольких слов, разделенных нижним подчеркиванием (_).
+Например:
+void draw_text(QDomElement &element);
+void path_draw(QDomElement &element);
+float x1_def(QDomElement &element);
+и т.д.
+По-моему, лучше сохранять единый стиль написания имен. Очень уж сильно бросается в глаза такое расслаивание стилей в одном файле.
+
+2. https://github.com/qreal/qreal/blob/master/qrgui/umllib/sdfRenderer.cpp
+
+1) Различная стилистика расставления фигурных скобок в операторе if:
+...
+if(!elem.isNull())
+{
+if (!checkShowConditions(elem, isIcon)) {
+node = node.nextSibling();
+continue;
+}
+if (elem.tagName()=="line")
+{
+line(elem);
+}
+...
+и т.д.
+По-моему, опять же, лучше придерживаться единого стиля написания, определенного в стайлгайде.
+
+2) Снова, что вполне очевидно, различная стилистика написания имен переменных.
+
+3) Можно вынести в отдельный блок:
+...
+float x1 = x1_def(element);
+float y1 = y1_def(element);
+float x2 = x2_def(element);
+float y2 = y2_def(element);
+...
+Используется в:
+void SdfRenderer::line(QDomElement &element)
+void SdfRenderer::ellipse(QDomElement &element)
+void SdfRenderer::arc(QDomElement &element)
+void SdfRenderer::rectangle(QDomElement &element)
+
+4) Аналогично можно вынести в отдельный блок:
+...
+while (d_cont[j] != ' ')
+{
+s1.append(d_cont[j]);
+++j;
+}
+...
+Очень часто этот цикл используется в методе:
+void SdfRenderer::path_draw(QDomElement &element)
+
+5) Очень странно, что все деструкторы с пустым телом, а в файле используются указатели, которые следовало бы удалить.
+Например:
+QPoint *SdfRenderer::getpoints(QDomElement &element, int n)
+SdfIconLoader *SdfIconLoader::instance()
