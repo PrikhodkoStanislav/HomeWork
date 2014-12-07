@@ -10,62 +10,100 @@ namespace Zadacha1_Binary_tree_test
         [TestInitialize]
         public void Initialize()
         {
-            tree = new BinaryTree();
+            intTree = new BinaryTree<int>();
+            stringTree = new BinaryTree<string>();
+            compareInt = new CompareInt();
+            compareString = new CompareString();
         }
 
         /// <summary>
-        /// Add element in the tree and this element must be in the tree.
+        /// Add element with int type in the tree and this element must be in the tree.
         /// </summary>
         [TestMethod]
-        public void AddElementTest()
+        public void AddElementIntTest()
         {
-            tree.AddElement(1);
-            Assert.IsTrue(tree.ExistElement(1));
+            intTree.AddElement(1, compareInt);
+            Assert.IsTrue(intTree.ExistElement(1, compareInt));
+        }
+
+        /// <summary>
+        /// Add element with string type in the tree and this element must be in the tree.
+        /// </summary>
+        [TestMethod]
+        public void AddElementStringTest()
+        {
+            stringTree.AddElement("Hello", compareString);
+            Assert.IsTrue(stringTree.ExistElement("Hello", compareString));
         }
 
         /// <summary>
         /// In empty tree must not be value.
-        /// Add element.
+        /// Add element with int type.
         /// Element must be in the tree.
         /// </summary>
         [TestMethod]
-        public void ExistElementTest()
+        public void ExistElementIntTest()
         {
-            Assert.IsFalse(tree.ExistElement(1));
-            tree.AddElement(1);
-            Assert.IsTrue(tree.ExistElement(1));
+            Assert.IsFalse(intTree.ExistElement(1, compareInt));
+            intTree.AddElement(1, compareInt);
+            Assert.IsTrue(intTree.ExistElement(1, compareInt));
         }
 
         /// <summary>
-        /// Add element. Remove element. This element must not be in the tree.
+        /// In empty tree must not be value.
+        /// Add element with string type.
+        /// Element must be in the tree.
         /// </summary>
         [TestMethod]
-        public void RemoveElementTest()
+        public void ExistElementStringTest()
         {
-            tree.AddElement(1);
-            Assert.IsTrue(tree.ExistElement(1));
-            tree.RemoveElement(1);
-            Assert.IsFalse(tree.ExistElement(1));
+            Assert.IsFalse(stringTree.ExistElement("String", compareString));
+            stringTree.AddElement("String", compareString);
+            Assert.IsTrue(stringTree.ExistElement("String", compareString));
         }
 
         /// <summary>
-        /// Add elements in the tree and check order of element.
+        /// Add element with int type. Remove element. This element must not be in the tree.
         /// </summary>
         [TestMethod]
-        public void EnumeratorTest()
+        public void RemoveElementIntTest()
         {
-            tree.AddElement(5);
-            tree.AddElement(3);
-            tree.AddElement(7);
-            tree.AddElement(4);
-            tree.AddElement(2);
-            tree.AddElement(6);
-            tree.AddElement(8);
+            intTree.AddElement(1, compareInt);
+            Assert.IsTrue(intTree.ExistElement(1, compareInt));
+            intTree.RemoveElement(1, compareInt);
+            Assert.IsFalse(intTree.ExistElement(1, compareInt));
+        }
+
+        /// <summary>
+        /// Add element with string type. Remove element. This element must not be in the tree.
+        /// </summary>
+        [TestMethod]
+        public void RemoveElementStringTest()
+        {
+            stringTree.AddElement("Good test", compareString);
+            Assert.IsTrue(stringTree.ExistElement("Good test", compareString));
+            stringTree.RemoveElement("Good test", compareString);
+            Assert.IsFalse(stringTree.ExistElement("Good test", compareString));
+        }
+
+        /// <summary>
+        /// Add elements with int type in the tree and check order of element.
+        /// </summary>
+        [TestMethod]
+        public void EnumeratorIntTest()
+        {
+            intTree.AddElement(5, compareInt);
+            intTree.AddElement(3, compareInt);
+            intTree.AddElement(7, compareInt);
+            intTree.AddElement(4, compareInt);
+            intTree.AddElement(2, compareInt);
+            intTree.AddElement(6, compareInt);
+            intTree.AddElement(8, compareInt);
             int[] arrayOfElements = new int[7];
             int i = 0;
-            foreach (TreeElement element in tree)
+            foreach (int element in intTree)
             {
-                arrayOfElements[i] = element.value;
+                arrayOfElements[i] = element;
                 i++;
             }
             Assert.AreEqual(5, arrayOfElements[0]);
@@ -77,6 +115,38 @@ namespace Zadacha1_Binary_tree_test
             Assert.AreEqual(8, arrayOfElements[6]);
         }
 
-        private BinaryTree tree;
+        /// <summary>
+        /// Add elements with string type in the tree and check order of element.
+        /// </summary>
+        [TestMethod]
+        public void EnumeratorStringTest()
+        {
+            stringTree.AddElement("5", compareString);
+            stringTree.AddElement("3", compareString);
+            stringTree.AddElement("7", compareString);
+            stringTree.AddElement("4", compareString);
+            stringTree.AddElement("2", compareString);
+            stringTree.AddElement("6", compareString);
+            stringTree.AddElement("8", compareString);
+            string[] arrayOfElements = new string[7];
+            int i = 0;
+            foreach (string element in stringTree)
+            {
+                arrayOfElements[i] = element;
+                i++;
+            }
+            Assert.AreEqual("5", arrayOfElements[0]);
+            Assert.AreEqual("3", arrayOfElements[1]);
+            Assert.AreEqual("2", arrayOfElements[2]);
+            Assert.AreEqual("4", arrayOfElements[3]);
+            Assert.AreEqual("7", arrayOfElements[4]);
+            Assert.AreEqual("6", arrayOfElements[5]);
+            Assert.AreEqual("8", arrayOfElements[6]);
+        }
+
+        private BinaryTree<int> intTree;
+        private BinaryTree<string> stringTree;
+        private CompareInterface<string> compareString;
+        private CompareInterface<int> compareInt;
     }
 }
