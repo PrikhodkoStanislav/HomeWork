@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Zadacha2_Computer_network
 {
@@ -27,35 +28,36 @@ namespace Zadacha2_Computer_network
         /// </summary>
         /// <param name="virus"></param>
         /// <param name="os"></param>
-        public void PrintNetwork(Virus virus, OS os)
+        public void PrintNetwork(StreamWriter sw, Virus virus, OS os)
         {
-            PrintNetworkNow();
+            PrintNetworkNow(sw);
             int start = 0;
             while (numberOfComputers != numberOfDirtyComputers && virus.CanGo(numberOfComputers, matrix, dirtyComputers))
             {
                 virus.Go(numberOfComputers, matrix, dirtyComputers, os, ref start);
-                PrintNetworkNow();
+                numberOfDirtyComputers++;
+                PrintNetworkNow(sw);
             }
-            Console.WriteLine();
+            sw.WriteLine();
         }
 
         /// <summary>
         /// Print condition of the network in this stage.
         /// </summary>
-        private void PrintNetworkNow()
+        private void PrintNetworkNow(StreamWriter sw)
         {
-            Console.WriteLine();
             for (int i = 0; i < numberOfComputers; i++)
             {
                 if (dirtyComputers[i])
                 {
-                    Console.Write(1 + " ");
+                    sw.Write(1 + " ");
                 }
                 else
                 {
-                    Console.Write(0 + " ");
+                    sw.Write(0 + " ");
                 }
             }
+            sw.WriteLine();
         }
 
         /// <summary>

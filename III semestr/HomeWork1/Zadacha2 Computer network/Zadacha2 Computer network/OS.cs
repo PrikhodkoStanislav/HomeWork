@@ -29,7 +29,7 @@
                         temp = 30;
                         break;
                     case (3):
-                        temp = 50;
+                        temp = 80;
                         break;
                 }
                 probability[i] = temp;

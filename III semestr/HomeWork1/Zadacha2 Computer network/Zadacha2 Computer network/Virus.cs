@@ -16,6 +16,7 @@ namespace Zadacha2_Computer_network
         {
             this.numberOfViruses = number;
             this.computers = numbersOfComputers;
+            this.random = new Random(100);
         }
 
         /// <summary>
@@ -108,10 +109,9 @@ namespace Zadacha2_Computer_network
             arrayOf100Probability[0] = (100 * os.probabilityOfComputer(variants[0])) / sum;
             for (int i = 1; i < index; i++)
             {
-                arrayOf100Probability[i] = arrayOf100Probability[i - 1] + 100 * (os.probabilityOfComputer(variants[i]) / sum);
+                arrayOf100Probability[i] = arrayOf100Probability[i - 1] + (100 * os.probabilityOfComputer(variants[i])) / sum;
             }
-            Random random = new Random();
-            int roadProbability = random.Next(100);
+            int roadProbability = random.Next(1, 100);
             for (int i = 0; i < index; i++)
             {
                 if (roadProbability < arrayOf100Probability[i])
@@ -136,7 +136,7 @@ namespace Zadacha2_Computer_network
         }
 
         /// <summary>
-        /// Number of viruses in the network.S
+        /// Number of viruses in the network.
         /// </summary>
         private int numberOfViruses;
 
@@ -144,5 +144,10 @@ namespace Zadacha2_Computer_network
         /// Numbers of dirty computers.
         /// </summary>
         private int[] computers;
+
+        /// <summary>
+        /// Random for virus.
+        /// </summary>
+        private Random random;
     }
 }
