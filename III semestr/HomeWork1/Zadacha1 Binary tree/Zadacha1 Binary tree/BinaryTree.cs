@@ -6,7 +6,7 @@ namespace Zadacha1_Binary_tree
     /// <summary>
     /// Class binary tree.
     /// </summary>
-    public class BinaryTree<T>
+    public class BinaryTree<T> : IEnumerable<T>
     {
         /// <summary>
         /// Class element of the tree.
@@ -69,18 +69,18 @@ namespace Zadacha1_Binary_tree
         /// Get enumerator.
         /// </summary>
         /// <returns></returns>
-        public IEnumerator<T> GetEnumerator()
-        {
-            if (root != null)
-            {
-                listOfElements.Clear();
-                ElementsOfTree(root);
-            }
-            foreach (var temp in listOfElements)
-            {
-                yield return temp.Value;
-            }
-        }
+        //public IEnumerator<T> GetEnumerator()
+        //{
+        //    if (root != null)
+        //    {
+        //        listOfElements.Clear();
+        //        ElementsOfTree(root);
+        //    }
+        //    foreach (var temp in listOfElements)
+        //    {
+        //        yield return temp.Value;
+        //    }
+        //}
 
         /// <summary>
         /// Fill list with elements of tree in the true order.
@@ -232,42 +232,37 @@ namespace Zadacha1_Binary_tree
             }
         }
 
-        public void RemoveElementFromSubTree(T value, TreeElement rootOfSubTree, CompareInterface<T> comparator)
-        {
-            return;
-        }
-
         /// <summary>
         /// Remove element from sub tree.
         /// </summary>
         /// <param name="value"></param>
         /// <param name="rootOfSubTree"></param>
         /// <param name="comparator"></param>
-        //public void RemoveElementFromSubTree(T value, TreeElement rootOfSubTree, CompareInterface<T> comparator)
-        //{
-        //    if (comparator.Compare(rootOfSubTree.Value, value) == 1)
-        //    {
-        //        if (comparator.Compare(rootOfSubTree.LeftElement.Value, value) == 0)
-        //        {
-        //            this.DeleteElement(rootOfSubTree.LeftElement, rootOfSubTree);
-        //        }
-        //        else
-        //        {
-        //            RemoveElementFromSubTree(value, rootOfSubTree.LeftElement, comparator);
-        //        }
-        //    }
-        //    else if (comparator.Compare(rootOfSubTree.Value, value) == -1)
-        //    {
-        //        if (comparator.Compare(rootOfSubTree.RightElement.Value, value) == 0)
-        //        {
-        //            this.DeleteElement(rootOfSubTree.RightElement, rootOfSubTree);
-        //        }
-        //        else
-        //        {
-        //            RemoveElementFromSubTree(value, rootOfSubTree.RightElement, comparator);
-        //        }
-        //    }
-        //}
+        public void RemoveElementFromSubTree(T value, TreeElement rootOfSubTree, CompareInterface<T> comparator)
+        {
+            if (comparator.Compare(rootOfSubTree.Value, value) == 1)
+            {
+                if (comparator.Compare(rootOfSubTree.LeftElement.Value, value) == 0)
+                {
+                    this.DeleteElement(rootOfSubTree.LeftElement, rootOfSubTree);
+                }
+                else
+                {
+                    RemoveElementFromSubTree(value, rootOfSubTree.LeftElement, comparator);
+                }
+            }
+            else if (comparator.Compare(rootOfSubTree.Value, value) == -1)
+            {
+                if (comparator.Compare(rootOfSubTree.RightElement.Value, value) == 0)
+                {
+                    this.DeleteElement(rootOfSubTree.RightElement, rootOfSubTree);
+                }
+                else
+                {
+                    RemoveElementFromSubTree(value, rootOfSubTree.RightElement, comparator);
+                }
+            }
+        }
 
         /// <summary>
         /// Delete element.
@@ -338,5 +333,23 @@ namespace Zadacha1_Binary_tree
 
         private TreeElement root;
         private List<TreeElement> listOfElements = new List<TreeElement>();
+
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            if (root != null)
+            {
+                listOfElements.Clear();
+                ElementsOfTree(root);
+            }
+            foreach (var temp in listOfElements)
+            {
+                yield return temp.Value;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
