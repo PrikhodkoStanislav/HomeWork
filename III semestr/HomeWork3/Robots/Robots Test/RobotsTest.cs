@@ -9,9 +9,6 @@ namespace Robots_Test
     {
         public struct ElementsForInput
         {
-            public int numberOfNodes;
-            public int numberOfRoads;
-            public int numberOfRobots;
             public bool[,] matrix;
             public int[] arrayOfRobots;
         };
@@ -53,9 +50,6 @@ namespace Robots_Test
             {
                 int.TryParse(stringsForInput[i], out arrayOfRobots[i]);
             }
-            elements.numberOfNodes = numberOfNodes;
-            elements.numberOfRoads = numberOfRoads;
-            elements.numberOfRobots = numberOfRobots;
             elements.matrix = matrix;
             elements.arrayOfRobots = arrayOfRobots;
             return elements;
@@ -66,7 +60,7 @@ namespace Robots_Test
         {
             reader = new StreamReader("Task1.txt");
             ElementsForInput elements = Input(reader);
-            bool result = TaskAboutRobots.resultOfTask(elements.numberOfNodes, elements.matrix, elements.numberOfRobots, elements.arrayOfRobots);
+            bool result = TaskAboutRobots.resultOfTask(elements.matrix, elements.arrayOfRobots);
             Assert.IsTrue(result);
         }
 
@@ -75,7 +69,7 @@ namespace Robots_Test
         {
             reader = new StreamReader("Task2.txt");
             ElementsForInput elements = Input(reader);
-            bool result = TaskAboutRobots.resultOfTask(elements.numberOfNodes, elements.matrix, elements.numberOfRobots, elements.arrayOfRobots);
+            bool result = TaskAboutRobots.resultOfTask(elements.matrix, elements.arrayOfRobots);
             Assert.IsTrue(result);
         }
 
@@ -84,7 +78,7 @@ namespace Robots_Test
         {
             reader = new StreamReader("Task3.txt");
             ElementsForInput elements = Input(reader);
-            bool result = TaskAboutRobots.resultOfTask(elements.numberOfNodes, elements.matrix, elements.numberOfRobots, elements.arrayOfRobots);
+            bool result = TaskAboutRobots.resultOfTask(elements.matrix, elements.arrayOfRobots);
             Assert.IsTrue(result);
         }
 
@@ -93,7 +87,7 @@ namespace Robots_Test
         {
             reader = new StreamReader("Task4.txt");
             ElementsForInput elements = Input(reader);
-            bool result = TaskAboutRobots.resultOfTask(elements.numberOfNodes, elements.matrix, elements.numberOfRobots, elements.arrayOfRobots);
+            bool result = TaskAboutRobots.resultOfTask(elements.matrix, elements.arrayOfRobots);
             Assert.IsFalse(result);
         }
 
@@ -102,7 +96,7 @@ namespace Robots_Test
         {
             reader = new StreamReader("Task5.txt");
             ElementsForInput elements = Input(reader);
-            bool result = TaskAboutRobots.resultOfTask(elements.numberOfNodes, elements.matrix, elements.numberOfRobots, elements.arrayOfRobots);
+            bool result = TaskAboutRobots.resultOfTask(elements.matrix, elements.arrayOfRobots);
             Assert.IsTrue(result);
         }
 
@@ -111,7 +105,7 @@ namespace Robots_Test
         {
             reader = new StreamReader("Task6.txt");
             ElementsForInput elements = Input(reader);
-            bool result = TaskAboutRobots.resultOfTask(elements.numberOfNodes, elements.matrix, elements.numberOfRobots, elements.arrayOfRobots);
+            bool result = TaskAboutRobots.resultOfTask(elements.matrix, elements.arrayOfRobots);
             Assert.IsFalse(result);
         }
 
@@ -120,7 +114,7 @@ namespace Robots_Test
         {
             reader = new StreamReader("Task7.txt");
             ElementsForInput elements = Input(reader);
-            bool result = TaskAboutRobots.resultOfTask(elements.numberOfNodes, elements.matrix, elements.numberOfRobots, elements.arrayOfRobots);
+            bool result = TaskAboutRobots.resultOfTask(elements.matrix, elements.arrayOfRobots);
             Assert.IsFalse(result);
         }
 
@@ -129,7 +123,25 @@ namespace Robots_Test
         {
             reader = new StreamReader("Task8.txt");
             ElementsForInput elements = Input(reader);
-            bool result = TaskAboutRobots.resultOfTask(elements.numberOfNodes, elements.matrix, elements.numberOfRobots, elements.arrayOfRobots);
+            bool result = TaskAboutRobots.resultOfTask(elements.matrix, elements.arrayOfRobots);
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void TestTaskAboutRobots9()
+        {
+            reader = new StreamReader("Task9.txt");
+            ElementsForInput elements = Input(reader);
+            bool result = TaskAboutRobots.resultOfTask(elements.matrix, elements.arrayOfRobots);
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void TestTaskAboutRobots10()
+        {
+            reader = new StreamReader("Task10.txt");
+            ElementsForInput elements = Input(reader);
+            bool result = TaskAboutRobots.resultOfTask(elements.matrix, elements.arrayOfRobots);
             Assert.IsTrue(result);
         }
 
