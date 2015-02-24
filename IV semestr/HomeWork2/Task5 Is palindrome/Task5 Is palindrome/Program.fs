@@ -20,3 +20,6 @@ isPalindrome "hello!"
 
 /// true
 isPalindrome "level"
+
+/// true
+isPalindrome "noon"
