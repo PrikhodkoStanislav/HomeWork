@@ -57,8 +57,16 @@ Exit
 
 *)
 
+let findElementInBook (list : (string * string) list) funcForParameter parameter =
+    List.fold (fun alternative (pair : string * string) ->
+        if (funcForParameter pair = parameter) then
+            pair
+        else
+            alternative)
+            ("No elements with this parameter!", "No elements with this parameter!") list 
+
 let phoneNumber =
-    let rec func listNameAndPhoneNumber =
+    let rec interfaceOfProgram listNameAndPhoneNumber =
         printfn "%s" " 0 - Exit \n 1 - Add name and phone number \n 2 - Find phone number by name"
         printfn "%s" " 3 - Find name by phone number \n 4 - Save data in file \n 5 - Read data from file \n"
         let n = System.Int32.Parse(System.Console.ReadLine())
@@ -68,32 +76,32 @@ let phoneNumber =
                let newName = System.Console.ReadLine()
                printfn "%s" "Input phone number"
                let newNumber = System.Console.ReadLine()
-               func ((newName, newNumber) :: listNameAndPhoneNumber)
+               interfaceOfProgram ((newName, newNumber) :: listNameAndPhoneNumber)
         | 2 -> printfn "%s" "Input name"
                let name = System.Console.ReadLine()
                printfn "%s" "Phone number"
-               let findNumder list name =
-                   List.fold (fun find (x, y) -> if (x = name) then y else find) "No number with this name!" list
-               printfn "%s" (findNumder listNameAndPhoneNumber name)
-               func listNameAndPhoneNumber
+               printfn "%s" ((fun (x, y) -> y) (findElementInBook listNameAndPhoneNumber (fun (x, y) -> x) name))
+               interfaceOfProgram listNameAndPhoneNumber
         | 3 -> printfn "%s" "Input phone number"
                let number = System.Console.ReadLine()
                printfn "%s" "Name"
-               let findName list number =
-                   List.fold (fun find (x, y) -> if (y = number) then x else find) "No name with this phone number!" list
-               printfn "%s" (findName listNameAndPhoneNumber number)
-               func listNameAndPhoneNumber
+               printfn "%s" ((fun (x, y) -> x) (findElementInBook listNameAndPhoneNumber (fun (x, y) -> y) number))
+               interfaceOfProgram listNameAndPhoneNumber
         | 4 -> System.IO.File.AppendAllLines(@"phoneBook.txt", listNameAndPhoneNumber |> List.fold(fun acc (x, y) -> y :: x :: acc) [] |> List.rev)
-               func listNameAndPhoneNumber
-        | 5 -> let listFromFile = System.IO.File.ReadLines(@"phoneBook.txt") |> Seq.toList
-               let createListFromFile list =
-                   let rec func list acc =
-                       match list with
-                       | [] -> acc
-                       | head :: headOfTail :: tail -> func tail ( (head, headOfTail) :: acc)
-                       | _ -> printfn "Error with data in file!"
-                              []
-                   func list []
-               func ( (createListFromFile listFromFile) @ listNameAndPhoneNumber)
-        | _ -> func listNameAndPhoneNumber
-    func []
+               interfaceOfProgram listNameAndPhoneNumber
+        | 5 -> if not(System.IO.File.Exists(@"phoneBook.txt")) then
+                   printfn "%s" "File is not create!"
+                   interfaceOfProgram listNameAndPhoneNumber
+               else
+                   let listFromFile = System.IO.File.ReadLines(@"phoneBook.txt") |> Seq.toList
+                   let createListFromFile list =
+                       let rec createList list acc =
+                           match list with
+                           | [] -> acc
+                           | head :: headOfTail :: tail -> createList tail ( (head, headOfTail) :: acc)
+                           | _ -> printfn "Error with data in file!"
+                                  []
+                       createList list []
+                   interfaceOfProgram ( (createListFromFile listFromFile) @ listNameAndPhoneNumber)
+        | _ -> interfaceOfProgram listNameAndPhoneNumber
+    interfaceOfProgram []

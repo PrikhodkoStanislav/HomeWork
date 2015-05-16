@@ -1,19 +1,20 @@
-﻿let isTrueBracketSequence theString =
+﻿let compareElementWithTheHeadOfList element list =
+    List.head list = element
+
+let isTrueBracketSequence theString =
     let rec parseString theString index list =
         if (index < String.length theString) then
             match (theString.[index]) with
-            | '(' -> parseString theString (index + 1) (theString.[index] :: list)
-            | '{' -> parseString theString (index + 1) (theString.[index] :: list)
-            | '[' -> parseString theString (index + 1) (theString.[index] :: list)
-            | ')' -> if (List.head list = '(') then
+            | '(' | '{' | '[' -> parseString theString (index + 1) (theString.[index] :: list)
+            | ')' -> if (compareElementWithTheHeadOfList '(' list) then
                          parseString theString (index + 1) (List.tail list)
                      else
                          false
-            | '}' -> if (List.head list = '{') then
+            | '}' -> if (compareElementWithTheHeadOfList '{' list) then
                          parseString theString (index + 1) (List.tail list)
                      else
                          false
-            | ']' -> if (List.head list = '[') then
+            | ']' -> if (compareElementWithTheHeadOfList '[' list) then
                          parseString theString (index + 1) (List.tail list)
                      else
                          false

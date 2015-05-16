@@ -24,7 +24,7 @@ let rec simplify expression =
         | (Constant n1, op,  Constant n2) -> Constant (count n1 op n2)
         | (Constant 1.0, '*', x) | (x, '*', Constant 1.0) | (x, '/', Constant 1.0) -> x
         | (Constant 0.0, '*', _) | (_, '*', Constant 0.0) | (Constant 0.0, '/', _) -> Constant 0.0
-        | (x, '+', Constant 0.0) | (Constant 0.0, '+', x) | (x, '-', Constant 0.0) | (Constant 0.0, '-', x) -> x
+        | (x, '+', Constant 0.0) | (Constant 0.0, '+', x) | (x, '-', Constant 0.0) -> x
         | _ -> FullExpression (ls, operation, rs)
 
 let rec derivative expression =
