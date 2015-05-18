@@ -85,12 +85,9 @@ type BinarySearchTree<'a when 'a : comparison>() =
         let rec check subtree =
             match (subtree) with
             | Empty -> Empty
-            | Tip element -> Tip element
+            | Tip element | Tree (element, Empty, Empty) -> Tip element
             | Tree (element, left, right) ->
-                if ((right = Empty) && (left = Empty)) then
-                    Tip element
-                else
-                    Tree (element, check left, check right)
+                Tree (element, check left, check right)
         if (v.Exist value) then
             tree <- check (delete value tree)
         else
