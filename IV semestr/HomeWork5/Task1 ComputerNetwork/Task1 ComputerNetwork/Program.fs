@@ -35,8 +35,8 @@ type Network(computers : Computer array, matrixOfConnection : bool array array) 
             
 let listOfOS = [{name = "Windows"; probability = 50}; {name = "Linux"; probability = 30}; {name = "Mac"; probability = 70}]
 
-let arrayOfComputers = [new Computer(listOfOS.[0]); new Computer(listOfOS.[1]);
-                        new Computer(listOfOS.[2])] |> List.toArray
+let arrayOfComputers = [|new Computer(listOfOS.[0]); new Computer(listOfOS.[1]);
+                        new Computer(listOfOS.[2])|]
 
 let connectionMatrix = [|([|false; true; true|]); ([|true; false; false|]);
                         ([|true; false; false|])|]
