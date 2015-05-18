@@ -38,8 +38,8 @@ let listOfOS = [{name = "Windows"; probability = 50}; {name = "Linux"; probabili
 let arrayOfComputers = [new Computer(listOfOS.[0]); new Computer(listOfOS.[1]);
                         new Computer(listOfOS.[2])] |> List.toArray
 
-let connectionMatrix = [ [false; true; true] |> List.toArray; [true; false; false] |> List.toArray;
-                        [true; false; false] |> List.toArray ] |> List.toArray
+let connectionMatrix = [|([|false; true; true|]); ([|true; false; false|]);
+                        ([|true; false; false|])|]
 
 let computerNetwork = new Network(arrayOfComputers, connectionMatrix)
 

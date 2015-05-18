@@ -90,7 +90,7 @@ let phoneNumber =
         | 4 -> System.IO.File.AppendAllLines(@"phoneBook.txt", listNameAndPhoneNumber |> List.fold(fun acc (x, y) -> y :: x :: acc) [] |> List.rev)
                interfaceOfProgram listNameAndPhoneNumber
         | 5 -> if not(System.IO.File.Exists(@"phoneBook.txt")) then
-                   printfn "%s" "File is not create!"
+                   printfn "%s" "File is not created!"
                    interfaceOfProgram listNameAndPhoneNumber
                else
                    let listFromFile = System.IO.File.ReadLines(@"phoneBook.txt") |> Seq.toList
